@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atolu_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:19:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/31 17:55:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/31 19:10:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,43 @@ static bool	is_whitespace(const char c)
 	return (c == SPACE || (FIRST_WHITESPACE <= c && c <= LAST_WHITESPACE));
 }
 
-int	ft_atoi(const char *nptr)
+static bool	ft_isdigit(const char c)
 {
-	long	nb;
-	size_t	i;
+	return (c >= '0' && c <= '9');
+}
 
+static bool	is_inbounds(
+	const unsigned long nb,
+	const unsigned long added_nb
+	)
+{
+	const unsigned long	bound = (ULONG_MAX - added_nb) / 10;
+
+	return (nb <= bound);
+}
+
+int	ft_atolu_check(unsigned long *nb_dest, const char *str)
+{
+	int		ret_val;
+	long	nb;
+
+	ret_val = EXIT_SUCCESS;
+	while (is_whitespace(*str) == true)
+		++str;
 	nb = 0;
-	while (is_whitespace(*nptr) == true)
-		++nptr;
-	i = 0;
-	if (nptr[0] == '-' || nptr[0] == '+')
-		++i;
-	while ('0' <= nptr[i] && nptr[i] <= '9')
+	if (*str == '-')
+		ret_val |= NEGATIVE_MASK;
+	str += (*str == '-' || *str == '+');
+	while (ft_isdigit(*str) != 0)
 	{
-		nb = nb * 10 + (nptr[i] - '0');
-		++i;
+		if (is_inbounds(nb, *str - '0') == false)
+			break ;
+		nb = nb * 10 + (*str - '0');
+		str++;
 	}
-	if (nptr[0] == '-')
-		nb *= -1;
-	return ((int)nb);
+	if (*str == '\0')
+		*nb_dest = nb;
+	else
+		ret_val = NON_DIGIT_MASK;
+	return (ret_val);
 }

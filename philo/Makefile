@@ -18,7 +18,7 @@ SRCS		+= philo.c
 
 ### srcs/get_args/
 
-SRCS		+= ft_atoi.c
+SRCS		+= ft_atolu_check.c
 SRCS		+= get_stat.c
 
 ### srcs/print/

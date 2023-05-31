@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/31 18:09:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/31 19:05:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <limits.h>
 # include <pthread.h>
 
 ///////////////
@@ -32,8 +33,10 @@
 
 // ERROR MESSAGES //
 
-# define NOT_ENOUGH_ARG		"not enough arguments"
-# define TOO_MANY_ARG		"too many arguments"
+# define NOT_ENOUGH_ARG				"not enough arguments"
+# define TOO_MANY_ARG				"too many arguments"
+# define SIGN_ERROR_MESSAGE			"numbers must be positive"
+# define NON_DIGIT_ERROR_MESSAGE	"arguments must be numbers"
 
 // COUNT //
 
@@ -55,6 +58,11 @@
 # define FIRST_WHITESPACE	9
 # define LAST_WHITESPACE	13
 
+// MASK //
+
+# define NEGATIVE_MASK		0x01
+# define NON_DIGIT_MASK		0x10
+
 ///////////////////
 /// STRUCTURES ///
 //////////////////
@@ -72,9 +80,9 @@ typedef struct s_stat
 /// FUNCTIONS ///
 /////////////////
 
-// ft_atoi.c
+// ft_atolu_check.c
 
-int		ft_atoi(const char *nptr);
+int		ft_atolu_check(unsigned long *ret_value, const char *str);
 
 // get_stat.c
 
