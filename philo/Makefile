@@ -44,6 +44,12 @@ vpath %.h $(PATH_HEADERS)
 
 NORM		= ../.git/norm.sh
 
+###############
+#### LINKS ####
+###############
+
+LINKS		= -pthread
+
 #####################
 #### COMPILATION ####
 #####################
@@ -59,7 +65,7 @@ ifneq ($(no_error), true)
 endif
 
 ifeq ($(debug), true)
-	CFLAGS	+= -fsanitize=address,undefined
+	CFLAGS	+= -fsanitize=undefined,thread
 endif
 
 ##############
