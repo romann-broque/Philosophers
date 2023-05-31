@@ -9,10 +9,22 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+= srcs/
+PATH_SRCS	+= srcs/get_args/
+PATH_SRCS	+= srcs/print/
 
 ### srcs/
 
 SRCS		+= philo.c
+
+### srcs/get_args/
+
+SRCS		+= ft_atoi.c
+SRCS		+= get_stat.c
+
+### srcs/print/
+
+SRCS		+= print_error.c
+SRCS		+= print_stat.c
 
 vpath %.c $(PATH_SRCS)
 

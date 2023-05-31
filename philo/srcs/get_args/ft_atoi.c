@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 11:34:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/31 18:09:24 by rbroque          ###   ########.fr       */
+/*   Created: 2023/05/31 17:19:25 by rbroque           #+#    #+#             */
+/*   Updated: 2023/05/31 17:55:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+static bool	is_whitespace(const char c)
 {
-	t_stat	stats;
-	int		ret_val;
+	return (c == SPACE || (FIRST_WHITESPACE <= c && c <= LAST_WHITESPACE));
+}
 
-	++av;
-	--ac;
-	ret_val = get_stat(&stats, ac, av);
-	return (ret_val);
+int	ft_atoi(const char *nptr)
+{
+	long	nb;
+	size_t	i;
+
+	nb = 0;
+	while (is_whitespace(*nptr) == true)
+		++nptr;
+	i = 0;
+	if (nptr[0] == '-' || nptr[0] == '+')
+		++i;
+	while ('0' <= nptr[i] && nptr[i] <= '9')
+	{
+		nb = nb * 10 + (nptr[i] - '0');
+		++i;
+	}
+	if (nptr[0] == '-')
+		nb *= -1;
+	return ((int)nb);
 }
