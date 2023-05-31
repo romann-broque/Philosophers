@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:34:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/31 16:15:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/05/31 16:17:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #define BYELLOW	"\e[1;33m"
 #define RED		"\e[31m"
 #define GREEN	"\e[32m"
-#define COUNT	10000
+#define COUNT	100000
 
 typedef struct s_count
 {
