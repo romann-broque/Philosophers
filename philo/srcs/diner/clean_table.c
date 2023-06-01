@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 19:37:56 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 19:41:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/01 20:07:17 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,5 @@
 void	clean_table(t_table *table)
 {
 	free(table->philo_array);
+	free(table->forks);
 }

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 19:43:27 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/01 20:08:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@
 # define NON_DIGIT_MASK		0x0010
 # define BEYOND_LIMIT_MASK	0x0100
 
-///////////////////
-/// STRUCTURES ///
-//////////////////
+////////////
+/// ENUM ///
+////////////
 
 typedef enum s_state
 {
@@ -76,6 +76,16 @@ typedef enum s_state
 	E_EAT,
 	E_DEAD
 }			t_state;
+
+typedef enum s_fork
+{
+	TAKEN,
+	FREE
+}			t_fork;
+
+///////////////////
+/// STRUCTURES ///
+//////////////////
 
 typedef struct s_stat
 {
@@ -89,13 +99,16 @@ typedef struct s_stat
 typedef struct s_philo
 {
 	size_t	index;
+	t_fork	*left_fork;
+	t_fork	*right_fork;
 	t_state	state;
 }				t_philo;
 
 typedef struct s_table
 {
-	t_philo	*philo_array;
 	t_stat	*stats;
+	t_fork	*forks;
+	t_philo	*philo_array;
 }				t_table;
 
 //////////////////
