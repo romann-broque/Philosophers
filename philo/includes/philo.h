@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 17:57:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/01 19:43:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@
 /// STRUCTURES ///
 //////////////////
 
+typedef enum s_state
+{
+	E_SLEEP,
+	E_THINK,
+	E_EAT,
+	E_DEAD
+}			t_state;
+
 typedef struct s_stat
 {
 	size_t	nb_philo;
@@ -78,9 +86,37 @@ typedef struct s_stat
 	ssize_t	nb_diner;
 }				t_stat;
 
+typedef struct s_philo
+{
+	size_t	index;
+	t_state	state;
+}				t_philo;
+
+typedef struct s_table
+{
+	t_philo	*philo_array;
+	t_stat	*stats;
+}				t_table;
+
 //////////////////
 /// FUNCTIONS ///
 /////////////////
+
+///		DINER		///
+
+// clean_table.c
+
+void	clean_table(t_table *table);
+
+// init_table.c
+
+void	init_table(t_table *table, t_stat *stats);
+
+// start_diner.c
+
+void	start_diner(t_stat *stats);
+
+///		GET_ARGS	///
 
 // ft_atolu_check.c
 

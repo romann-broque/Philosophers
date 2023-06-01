@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   start_diner.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 11:34:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 19:37:45 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/01 19:21:37 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/01 19:42:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+void	start_diner(t_stat *stats)
 {
-	t_stat	stats;
-	int		ret_val;
+	t_table	table;
 
-	++av;
-	--ac;
-	ret_val = get_stat(&stats, ac, av);
-	if (ret_val == EXIT_SUCCESS)
-		start_diner(&stats);
-	return (ret_val);
+	init_table(&table, stats);
+	print_stat(stats);
+	clean_table(&table);
 }

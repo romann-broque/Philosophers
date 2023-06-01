@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:02:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 17:54:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/01 19:42:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,5 @@ int	get_stat(t_stat *stats, const int ac, char **av)
 		print_error(TOO_MANY_ARG);
 	else
 		ret_val = init_stats(stats, av);
-	if (ret_val == EXIT_SUCCESS)
-		print_stat(stats);
 	return (ret_val);
 }
