@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:19:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/31 19:10:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/01 18:02:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,40 @@ static bool	is_inbounds(
 	return (nb <= bound);
 }
 
+static int	skip_beginning(const char **str)
+{
+	int	ret_val;
+
+	ret_val = EXIT_SUCCESS;
+	while (is_whitespace(**str) == true)
+		++*str;
+	if (**str == '-')
+		ret_val |= NEGATIVE_MASK;
+	*str += (**str == '-' || **str == '+');
+	return (ret_val);
+}
+
 int	ft_atolu_check(unsigned long *nb_dest, const char *str)
 {
 	int		ret_val;
 	long	nb;
 
-	ret_val = EXIT_SUCCESS;
-	while (is_whitespace(*str) == true)
-		++str;
+	ret_val = skip_beginning(&str);
 	nb = 0;
-	if (*str == '-')
-		ret_val |= NEGATIVE_MASK;
-	str += (*str == '-' || *str == '+');
 	while (ft_isdigit(*str) != 0)
 	{
 		if (is_inbounds(nb, *str - '0') == false)
+		{
+			if (!(ret_val & NEGATIVE_MASK))
+				ret_val = BEYOND_LIMIT_MASK;
 			break ;
+		}
 		nb = nb * 10 + (*str - '0');
 		str++;
 	}
 	if (*str == '\0')
 		*nb_dest = nb;
-	else
+	else if (ret_val == EXIT_SUCCESS)
 		ret_val = NON_DIGIT_MASK;
 	return (ret_val);
 }

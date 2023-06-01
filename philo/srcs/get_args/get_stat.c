@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:02:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/31 19:07:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/01 17:54:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	print_arg_error(const int error)
 		print_error(SIGN_ERROR_MESSAGE);
 	if (error & NON_DIGIT_MASK)
 		print_error(NON_DIGIT_ERROR_MESSAGE);
+	if (error & BEYOND_LIMIT_MASK)
+		print_error(BEYOND_LIMIT_ERROR_MESSAGE);
 }
 
 static int	init_stats(t_stat *stats, char **av)

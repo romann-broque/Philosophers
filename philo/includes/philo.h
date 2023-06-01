@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/05/31 19:05:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/01 17:57:08 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define TOO_MANY_ARG				"too many arguments"
 # define SIGN_ERROR_MESSAGE			"numbers must be positive"
 # define NON_DIGIT_ERROR_MESSAGE	"arguments must be numbers"
+# define BEYOND_LIMIT_ERROR_MESSAGE	"arguments must be numbers under ULONG_MAX"
 
 // COUNT //
 
@@ -60,8 +61,9 @@
 
 // MASK //
 
-# define NEGATIVE_MASK		0x01
-# define NON_DIGIT_MASK		0x10
+# define NEGATIVE_MASK		0x0001
+# define NON_DIGIT_MASK		0x0010
+# define BEYOND_LIMIT_MASK	0x0100
 
 ///////////////////
 /// STRUCTURES ///
