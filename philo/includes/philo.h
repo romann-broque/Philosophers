@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/02 14:34:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/02 14:36:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,9 @@ void	*philo_routine(t_philo *philo);
 
 /// philo_states.c
 
-void	eat(t_philo *philo);
-void	sleep(t_philo *philo);
-void	think(t_philo *philo);
+void	eat_state(t_philo *philo);
+void	sleep_state(t_philo *philo);
+void	think_state(t_philo *philo);
 
 ///		GET_ARGS	///
 

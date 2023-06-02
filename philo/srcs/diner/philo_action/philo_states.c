@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/02 14:36:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/02 14:36:45 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	drop_forks(t_philo *philo)
 	pthread_mutex_unlock(&(philo->right_fork->mutex));
 }
 
-void	eat(t_philo *philo)
+void	eat_state(t_philo *philo)
 {
 	grab_fork(philo->left_fork, philo->index);
 	grab_fork(philo->right_fork, philo->index);
@@ -35,13 +35,13 @@ void	eat(t_philo *philo)
 
 // add a usleep in sleep function
 
-void	sleep(t_philo *philo)
+void	sleep_state(t_philo *philo)
 {
 	print_philo_act(philo->index, SLEEP_MESSAGE);
 	philo->state = E_SLEEP;
 }
 
-void	think(t_philo *philo)
+void	think_state(t_philo *philo)
 {
 	print_philo_act(philo->index, THINK_MESSAGE);
 	philo->state = E_THINK;
