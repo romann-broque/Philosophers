@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:02:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 19:42:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/01 20:23:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,30 @@ static void	print_arg_error(const int error)
 		print_error(BEYOND_LIMIT_ERROR_MESSAGE);
 }
 
-static int	init_stats(t_stat *stats, char **av)
+static int	get_stat_value(t_stat *stats, char **av)
 {
-	int	ret_val;
+	int	error_val;
 
-	ret_val = EXIT_SUCCESS;
-	ret_val |= ft_atolu_check(&(stats->nb_philo), av[0]);
-	ret_val |= ft_atolu_check(&(stats->die_time), av[1]);
-	ret_val |= ft_atolu_check(&(stats->eat_time), av[2]);
-	ret_val |= ft_atolu_check(&(stats->sleep_time), av[3]);
+	error_val = NO_ERROR;
+	error_val |= ft_atolu_check(&(stats->nb_philo), av[0]);
+	error_val |= ft_atolu_check(&(stats->die_time), av[1]);
+	error_val |= ft_atolu_check(&(stats->eat_time), av[2]);
+	error_val |= ft_atolu_check(&(stats->sleep_time), av[3]);
 	if (av[4] != NULL)
-		ret_val |= ft_atolu_check((size_t *)&(stats->nb_diner), av[4]);
+		error_val |= ft_atolu_check((size_t *)&(stats->nb_diner), av[4]);
 	else
 		stats->nb_diner = INFINITE_DINER;
-	if (ret_val == EXIT_SUCCESS)
+	return (error_val);
+}
+
+static int	init_stats(t_stat *stats, char **av)
+{
+	int	error_val;
+
+	error_val = get_stat_value(stats, av);
+	if (error_val == NO_ERROR)
 		return (EXIT_SUCCESS);
-	print_arg_error(ret_val);
+	print_arg_error(error_val);
 	return (EXIT_FAILURE);
 }
 

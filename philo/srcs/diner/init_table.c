@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 19:36:57 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 20:06:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/01 20:18:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ static void	fill_philo_array(
 	i = 0;
 	while (i < nb_philo)
 	{
-		if (i + 1 < nb_philo)
-			init_philo(philo_array + i, i, forks + i, forks + i + 1);
-		else
+		if (i + 1 == nb_philo)
 			init_philo(philo_array + i, i, forks + i, forks);
+		else
+			init_philo(philo_array + i, i, forks + i, forks + i + 1);
 		++i;
 	}
 }
@@ -75,5 +75,6 @@ static t_philo	*init_philo_array(const size_t nb_philo, t_fork *forks)
 void	init_table(t_table *table, t_stat *stats)
 {
 	table->forks = init_forks(stats->nb_philo);
-	table->philo_array = init_philo_array(stats->nb_philo, table->forks);
+	if (table->forks != NULL)
+		table->philo_array = init_philo_array(stats->nb_philo, table->forks);
 }

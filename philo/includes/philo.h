@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 20:08:15 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/01 20:24:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 
 // MASK //
 
+# define NO_ERROR			0x0000
 # define NEGATIVE_MASK		0x0001
 # define NON_DIGIT_MASK		0x0010
 # define BEYOND_LIMIT_MASK	0x0100
