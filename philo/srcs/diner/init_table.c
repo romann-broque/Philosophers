@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 19:36:57 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 20:18:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/02 13:28:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static t_fork	*init_forks(const size_t nb_philo)
 		i = 0;
 		while (i < nb_philo)
 		{
-			*forks = FREE;
+			forks[i].state = FREE;
+			pthread_mutex_init(&(forks[i].mutex), NULL);
 			++i;
 		}
 	}
@@ -55,9 +56,9 @@ static void	fill_philo_array(
 	while (i < nb_philo)
 	{
 		if (i + 1 == nb_philo)
-			init_philo(philo_array + i, i, forks + i, forks);
+			init_philo(philo_array + i, i + 1, forks + i, forks);
 		else
-			init_philo(philo_array + i, i, forks + i, forks + i + 1);
+			init_philo(philo_array + i, i + 1, forks + i, forks + i + 1);
 		++i;
 	}
 }
@@ -77,4 +78,5 @@ void	init_table(t_table *table, t_stat *stats)
 	table->forks = init_forks(stats->nb_philo);
 	if (table->forks != NULL)
 		table->philo_array = init_philo_array(stats->nb_philo, table->forks);
+	table->stats = stats;
 }

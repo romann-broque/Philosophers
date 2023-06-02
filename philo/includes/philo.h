@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 20:24:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/02 14:34:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdbool.h>
 # include <limits.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 ///////////////
 /// DEFINES ///
@@ -30,6 +31,10 @@
 # define EAT_TIME_MESSAGE	"Time to eat (ms)"
 # define SLEEP_TIME_MESSAGE	"Time to sleep (ms)"
 # define NB_DINER_MESSAGE	"Number of time each philosopher must eat"
+# define FORK_MESSAGE		"has taken a fork"
+# define EAT_MESSAGE		"is eating"
+# define SLEEP_MESSAGE		"is sleeping"
+# define THINK_MESSAGE		"is thinking"
 
 // ERROR MESSAGES //
 
@@ -78,15 +83,21 @@ typedef enum s_state
 	E_DEAD
 }			t_state;
 
-typedef enum s_fork
+typedef enum s_fork_state
 {
 	TAKEN,
 	FREE
-}			t_fork;
+}			t_fork_state;
 
 ///////////////////
 /// STRUCTURES ///
 //////////////////
+
+typedef struct s_fork
+{
+	t_fork_state	state;
+	pthread_mutex_t	mutex;
+}				t_fork;
 
 typedef struct s_stat
 {
@@ -99,17 +110,18 @@ typedef struct s_stat
 
 typedef struct s_philo
 {
-	size_t	index;
-	t_fork	*left_fork;
-	t_fork	*right_fork;
-	t_state	state;
+	size_t		index;
+	t_fork		*left_fork;
+	t_fork		*right_fork;
+	t_state		state;
+	pthread_t	thread;
 }				t_philo;
 
 typedef struct s_table
 {
-	t_stat	*stats;
-	t_fork	*forks;
-	t_philo	*philo_array;
+	t_stat			*stats;
+	t_fork			*forks;
+	t_philo			*philo_array;
 }				t_table;
 
 //////////////////
@@ -130,6 +142,18 @@ void	init_table(t_table *table, t_stat *stats);
 
 void	start_diner(t_stat *stats);
 
+////		PHILO_ACTION		////
+
+/// philo_routine.c
+
+void	*philo_routine(t_philo *philo);
+
+/// philo_states.c
+
+void	eat(t_philo *philo);
+void	sleep(t_philo *philo);
+void	think(t_philo *philo);
+
 ///		GET_ARGS	///
 
 // ft_atolu_check.c
@@ -141,6 +165,10 @@ int		ft_atolu_check(unsigned long *ret_value, const char *str);
 int		get_stat(t_stat *stats, const int ac, char **av);
 
 ///		PRINT		///
+
+// print_philo_act.c
+
+void	print_philo_act(const size_t id, const char *action);
 
 // print_error.c
 

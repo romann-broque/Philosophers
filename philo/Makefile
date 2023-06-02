@@ -10,6 +10,7 @@ SHELL		= /usr/bin/bash
 
 PATH_SRCS	+= srcs/
 PATH_SRCS	+= srcs/diner/
+PATH_SRCS	+= srcs/diner/philo_action/
 PATH_SRCS	+= srcs/get_args/
 PATH_SRCS	+= srcs/print/
 
@@ -23,6 +24,11 @@ SRCS		+= clean_table.c
 SRCS		+= init_table.c
 SRCS		+= start_diner.c
 
+### srcs/diner/philo_action/
+
+SRCS		+= philo_routine.c
+SRCS		+= philo_states.c
+
 ### srcs/get_args/
 
 SRCS		+= ft_atolu_check.c
@@ -30,6 +36,7 @@ SRCS		+= get_stat.c
 
 ### srcs/print/
 
+SRCS		+= print_philo_act.c
 SRCS		+= print_error.c
 SRCS		+= print_stat.c
 
