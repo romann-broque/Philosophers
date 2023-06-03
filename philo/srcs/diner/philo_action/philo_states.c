@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/03 22:38:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/03 22:45:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	eat_state(t_philo *philo)
 {
 	grab_fork(philo->left_fork, philo);
 	grab_fork(philo->right_fork, philo);
-	print_philo_act(philo, EAT_MESSAGE);
 	philo->state = E_EAT;
+	print_philo_act(philo, EAT_MESSAGE);
+	usleep(philo->eat_time);
 	--(philo->left_diner);
 	drop_forks(philo);
 }
@@ -38,8 +39,9 @@ void	eat_state(t_philo *philo)
 
 void	sleep_state(t_philo *philo)
 {
-	print_philo_act(philo, SLEEP_MESSAGE);
 	philo->state = E_SLEEP;
+	print_philo_act(philo, SLEEP_MESSAGE);
+	usleep(philo->sleep_time);
 }
 
 void	think_state(t_philo *philo)

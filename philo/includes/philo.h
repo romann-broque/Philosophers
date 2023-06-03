@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/03 22:42:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/03 22:48:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <limits.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <unistd.h>
 
 ///////////////
 /// DEFINES ///
@@ -115,6 +116,9 @@ typedef struct s_philo
 	t_fork			*right_fork;
 	t_state			state;
 	size_t			left_diner;
+	suseconds_t		sleep_time;
+	suseconds_t		eat_time;
+	suseconds_t		time_since_last_diner;
 	pthread_t		thread;
 	pthread_mutex_t	print_mutex;
 }				t_philo;

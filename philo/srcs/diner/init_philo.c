@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 22:40:39 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/03 22:41:22 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/03 22:48:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,23 @@ t_philo	*init_philo_array(const size_t nb_philo, t_fork *forks)
 	return (philo_array);
 }
 
+static void	set_philo_set(t_philo *philo, t_table *table)
+{
+	philo->left_diner = table->stats->nb_diner;
+	philo->sleep_time = table->stats->sleep_time;
+	philo->eat_time = table->stats->eat_time;
+	philo->time_since_last_diner = 0;
+}
+
 void	set_philo_settings(t_table *table)
 {
-	t_philo	*philo_array;
-	size_t	i;
+	t_philo *const	philo_array = table->philo_array;
+	size_t			i;
 
-	philo_array = table->philo_array;
 	i = 0;
 	while (i < table->stats->nb_philo)
 	{
-		philo_array[i].left_diner = table->stats->nb_diner;
+		set_philo_set(philo_array + i, table);
 		++i;
 	}
 }
