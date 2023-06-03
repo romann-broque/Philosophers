@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/02 14:36:57 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/03 16:01:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <limits.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <unistd.h>
 
 ///////////////
 /// DEFINES ///
@@ -35,6 +36,7 @@
 # define EAT_MESSAGE		"is eating"
 # define SLEEP_MESSAGE		"is sleeping"
 # define THINK_MESSAGE		"is thinking"
+# define DIE_MESSAGE		"died"
 
 // ERROR MESSAGES //
 
@@ -110,18 +112,28 @@ typedef struct s_stat
 
 typedef struct s_philo
 {
-	size_t		index;
-	t_fork		*left_fork;
-	t_fork		*right_fork;
-	t_state		state;
-	pthread_t	thread;
+	bool			*start;
+	size_t			index;
+	size_t			diner_left;
+	t_fork			*left_fork;
+	t_fork			*right_fork;
+	suseconds_t		time_since_last_diner;
+	suseconds_t		die_time;
+	suseconds_t		eat_time;
+	suseconds_t		sleep_time;
+	t_state			state;
+	pthread_t		thread;
+	pthread_t		dead_thread;
+	pthread_mutex_t	print_mutex;
 }				t_philo;
 
 typedef struct s_table
 {
+	bool			start;
 	t_stat			*stats;
 	t_fork			*forks;
 	t_philo			*philo_array;
+	pthread_mutex_t	mutex;
 }				t_table;
 
 //////////////////
@@ -133,6 +145,11 @@ typedef struct s_table
 // clean_table.c
 
 void	clean_table(t_table *table);
+
+// init_philo_array.c
+
+t_philo	*init_philo_array(const size_t nb_philo, t_fork *forks);
+void	set_philo_array_stats(t_philo *philo_array, t_table *table);
 
 // init_table.c
 
@@ -146,6 +163,7 @@ void	start_diner(t_stat *stats);
 
 /// philo_routine.c
 
+void	*dead_philo_routine(t_philo *philo);
 void	*philo_routine(t_philo *philo);
 
 /// philo_states.c
@@ -168,7 +186,7 @@ int		get_stat(t_stat *stats, const int ac, char **av);
 
 // print_philo_act.c
 
-void	print_philo_act(const size_t id, const char *action);
+void	print_philo_act(t_philo *philo, const char *action);
 
 // print_error.c
 

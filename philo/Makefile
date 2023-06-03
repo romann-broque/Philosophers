@@ -23,6 +23,7 @@ SRCS		+= philo.c
 SRCS		+= clean_table.c
 SRCS		+= init_table.c
 SRCS		+= start_diner.c
+SRCS		+= init_philo_array.c
 
 ### srcs/diner/philo_action/
 
