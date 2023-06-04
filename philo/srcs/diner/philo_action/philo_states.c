@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/03 22:45:23 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/04 22:24:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	eat_state(t_philo *philo)
 	--(philo->left_diner);
 	drop_forks(philo);
 }
-
-// add a usleep in sleep function
 
 void	sleep_state(t_philo *philo)
 {

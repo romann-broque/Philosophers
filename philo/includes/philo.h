@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/03 22:48:57 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/04 22:35:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define EAT_MESSAGE		"is eating"
 # define SLEEP_MESSAGE		"is sleeping"
 # define THINK_MESSAGE		"is thinking"
+# define DEAD_MESSAGE		"died"
 
 // ERROR MESSAGES //
 
@@ -116,11 +117,14 @@ typedef struct s_philo
 	t_fork			*right_fork;
 	t_state			state;
 	size_t			left_diner;
+	suseconds_t		die_time;
 	suseconds_t		sleep_time;
 	suseconds_t		eat_time;
 	suseconds_t		time_since_last_diner;
 	pthread_t		thread;
+	pthread_t		dead_thread;
 	pthread_mutex_t	print_mutex;
+	bool			*can_start;
 }				t_philo;
 
 typedef struct s_table
@@ -128,6 +132,7 @@ typedef struct s_table
 	t_stat			*stats;
 	t_fork			*forks;
 	t_philo			*philo_array;
+	bool			can_start;
 }				t_table;
 
 //////////////////

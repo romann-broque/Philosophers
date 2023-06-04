@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 19:21:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/02 13:45:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/04 22:34:51 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	launch_simulation(t_table *table)
 		start_philo(table->philo_array + i);
 		++i;
 	}
+	table->can_start = true;
 	wait_philo(table);
 }
 

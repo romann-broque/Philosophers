@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 19:36:57 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/03 22:42:01 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/04 22:35:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_table(t_table *table, t_stat *stats)
 {
 	table->forks = init_forks(stats->nb_philo);
 	table->stats = stats;
+	table->can_start = false;
 	if (table->forks != NULL)
 	{
 		table->philo_array = init_philo_array(stats->nb_philo, table->forks);
