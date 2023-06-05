@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/04 22:35:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/05 11:50:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,12 @@ typedef struct s_philo
 	suseconds_t		sleep_time;
 	suseconds_t		eat_time;
 	suseconds_t		time_since_last_diner;
+	suseconds_t		start_diner_time;
 	pthread_t		thread;
-	pthread_t		dead_thread;
 	pthread_mutex_t	print_mutex;
 	bool			*can_start;
+	bool			*sbd_dead;
+	pthread_mutex_t	*action_mutex;
 }				t_philo;
 
 typedef struct s_table
@@ -132,7 +134,10 @@ typedef struct s_table
 	t_stat			*stats;
 	t_fork			*forks;
 	t_philo			*philo_array;
+	pthread_t		dead_thread;
+	pthread_mutex_t	action_mutex;
 	bool			can_start;
+	bool			sbd_dead;
 }				t_table;
 
 //////////////////
@@ -158,10 +163,15 @@ void	init_table(t_table *table, t_stat *stats);
 
 void	start_diner(t_stat *stats);
 
+/// dead_routine.c
+
+void	*dead_routine(t_table *table);
+
 ////		PHILO_ACTION		////
 
 /// philo_routine.c
 
+void	wait_start(bool *can_start);
 void	*philo_routine(t_philo *philo);
 
 /// philo_states.c

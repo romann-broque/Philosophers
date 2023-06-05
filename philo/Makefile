@@ -24,6 +24,7 @@ SRCS		+= clean_table.c
 SRCS		+= init_table.c
 SRCS		+= start_diner.c
 SRCS		+= init_philo.c
+SRCS		+= dead_routine.c
 
 ### srcs/diner/philo_action/
 
