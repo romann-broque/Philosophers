@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/05 11:59:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/05 12:12:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,17 @@ void	*dead_routine(t_table *table)
 	wait_start(&(table->can_start));
 	while (true)
 	{
+		pthread_mutex_lock(&(table->action_mutex));
 		i = 0;
 		while (i < nb_philo)
 		{
-			pthread_mutex_lock(&(table->action_mutex));
 			if (dead_philo_routine(philo_array + i) == NULL)
 			{
 				table->sbd_dead = true;
-				pthread_mutex_unlock(&(table->action_mutex));
 				return (NULL);
 			}
-			pthread_mutex_unlock(&(table->action_mutex));
 			++i;
 		}
+		pthread_mutex_unlock(&(table->action_mutex));
 	}
 }
