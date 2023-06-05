@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/05 12:35:42 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/05 18:35:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	*dead_routine(t_table *table)
 	t_philo *const	philo_array = table->philo_array;
 	size_t			i;
 
-	wait_start(&(table->can_start));
 	while (is_diner_finished(table) == false)
 	{
 		pthread_mutex_lock(&(table->action_mutex));

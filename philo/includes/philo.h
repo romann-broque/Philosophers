@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/05 12:37:01 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/05 18:34:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,8 @@ typedef struct s_philo
 	suseconds_t		start_diner_time;
 	pthread_t		thread;
 	pthread_mutex_t	print_mutex;
-	bool			*can_start;
-	bool			*sbd_dead;
 	pthread_mutex_t	*action_mutex;
+	bool			*sbd_dead;
 }				t_philo;
 
 typedef struct s_table
@@ -136,7 +135,6 @@ typedef struct s_table
 	t_philo			*philo_array;
 	pthread_t		dead_thread;
 	pthread_mutex_t	action_mutex;
-	bool			can_start;
 	bool			sbd_dead;
 }				t_table;
 
@@ -181,7 +179,7 @@ bool	is_diner_finished(t_table *table);
 
 /// philo_routine.c
 
-void	wait_start(bool *can_start);
+void	wait_start(pthread_mutex_t *mutex, bool *can_start);
 void	*philo_routine(t_philo *philo);
 
 /// philo_states.c
