@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/05 12:15:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/05 12:37:01 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,9 +163,19 @@ void	init_table(t_table *table, t_stat *stats);
 
 void	start_diner(t_stat *stats);
 
+////	DEAD_ACTION		////
+
 /// dead_routine.c
 
 void	*dead_routine(t_table *table);
+
+// dead_routine_utils.c
+
+void	reset_time(t_philo *philo);
+void	update_time(t_philo *philo);
+bool	is_dead(t_philo *philo);
+void	*dead_philo_routine(t_philo *philo);
+bool	is_diner_finished(t_table *table);
 
 ////		PHILO_ACTION		////
 
