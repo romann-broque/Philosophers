@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 14:38:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/06 14:55:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static void	drop_forks(t_philo *philo)
 
 void	eat_state(t_philo *philo)
 {
-	philo->time_count = get_time();
 	grab_fork(philo->left_fork, philo);
 	grab_fork(philo->right_fork, philo);
 	philo->state = E_EAT;
+	philo->time_count = get_time();
 	print_philo_act(philo, EAT_MESSAGE);
 	exec_action(philo->eat_time);
 	drop_forks(philo);
@@ -40,7 +40,7 @@ void	sleep_state(t_philo *philo)
 {
 	philo->state = E_SLEEP;
 	print_philo_act(philo, SLEEP_MESSAGE);
-	exec_action(philo->eat_time);
+	exec_action(philo->sleep_time);
 }
 
 void	think_state(t_philo *philo)

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:35:21 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 14:38:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/06 14:50:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	delta_time(long long time)
 	return (0);
 }
 
-void	exec_action(const suseconds_t ms)
+void	exec_action(const size_t ms)
 {
 	usleep(1000 * ms);
 }

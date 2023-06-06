@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 14:38:48 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/06 14:50:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ bool	is_diner_finished(t_table *table);
 
 size_t	get_time(void);
 size_t	delta_time(long long time);
-void	exec_action(const suseconds_t ms);
+void	exec_action(const size_t ms);
 
 ////		PHILO_ACTION		////
 
