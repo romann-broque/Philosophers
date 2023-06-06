@@ -6,50 +6,30 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 12:35:11 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 13:23:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/06 14:35:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	reset_time(t_philo *philo)
+static bool	is_dead(t_philo *philo, t_stat *stats)
 {
-	struct timeval	start;
+	size_t	time;
 
-	philo->time_since_last_diner = 0;
-	gettimeofday(&start, NULL);
-	philo->start_diner_time = start.tv_usec;
-}
-
-void	update_time(t_philo *philo)
-{
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	philo->time_since_last_diner = tv.tv_usec - philo->start_diner_time;
-}
-
-bool	is_dead(t_philo *philo)
-{
-	if (philo->time_since_last_diner >= philo->die_time)
+	time = delta_time(philo->time_count);
+	if (time >= stats->die_time)
 	{
-		print_philo_act(philo, DEAD_MESSAGE);
+		print_philo_act(philo, RED""DEAD_MESSAGE""NC);
 		philo->state = E_DEAD;
 		return (true);
 	}
 	return (false);
 }
 
-void	*dead_philo_routine(t_philo *philo)
+void	*dead_philo_routine(t_philo *philo, t_stat *stats)
 {
-	if (philo->start_diner_time == -1 || philo->state == E_EAT)
-		reset_time(philo);
-	if (philo->state != E_EAT)
-	{
-		update_time(philo);
-		if (is_dead(philo) == true)
-			return (NULL);
-	}
+	if (is_dead(philo, stats) == true)
+		return (NULL);
 	return (philo);
 }
 

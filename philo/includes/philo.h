@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 11:25:34 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/06 14:36:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,10 @@ typedef struct s_philo
 	t_fork			*right_fork;
 	t_state			state;
 	size_t			left_diner;
-	suseconds_t		die_time;
+	size_t			*start_time;
 	suseconds_t		sleep_time;
 	suseconds_t		eat_time;
-	suseconds_t		time_since_last_diner;
-	suseconds_t		start_diner_time;
+	suseconds_t		time_count;
 	pthread_t		thread;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	*action_mutex;
@@ -136,6 +135,7 @@ typedef struct s_table
 	pthread_t		dead_thread;
 	pthread_mutex_t	action_mutex;
 	bool			sbd_dead;
+	size_t			start_time;
 }				t_table;
 
 //////////////////
@@ -167,13 +167,17 @@ void	start_diner(t_stat *stats);
 
 void	*dead_routine(t_table *table);
 
-// dead_routine_utils.c
+/// dead_routine_utils.c
 
-void	reset_time(t_philo *philo);
-void	update_time(t_philo *philo);
-bool	is_dead(t_philo *philo);
-void	*dead_philo_routine(t_philo *philo);
+void	*dead_philo_routine(t_philo *philo, t_stat *stats);
 bool	is_diner_finished(t_table *table);
+
+////	TIME		////
+
+/// time_utils.c
+
+size_t	get_time(void);
+size_t	delta_time(long long time);
 
 ////		PHILO_ACTION		////
 
@@ -187,6 +191,12 @@ void	*philo_routine(t_philo *philo);
 void	eat_state(t_philo *philo);
 void	sleep_state(t_philo *philo);
 void	think_state(t_philo *philo);
+
+//// states_utils.c
+
+void	grab_fork(t_fork *fork, t_philo *philo);
+void	drop_forks(t_philo *philo);
+void	exec_action(const suseconds_t ms);
 
 ///		GET_ARGS	///
 

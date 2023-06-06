@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 13:23:20 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/06 14:01:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*dead_routine(t_table *table)
 		i = 0;
 		while (i < nb_philo)
 		{
-			if (dead_philo_routine(philo_array + i) == NULL)
+			if (dead_philo_routine(philo_array + i, table->stats) == NULL)
 			{
 				table->sbd_dead = true;
 				return (NULL);

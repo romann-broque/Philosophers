@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_philo_act.c                                  :+:      :+:    :+:   */
+/*   time_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/02 14:33:32 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 14:16:00 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/06 14:35:21 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/06 14:35:36 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_philo_act(t_philo *philo, const char *action)
+size_t	get_time(void)
 {
-	size_t	now;
+	struct timeval	time;
 
-	if (*(philo->sbd_dead) == false)
-	{
-		now = delta_time(*(philo->start_time));
-		pthread_mutex_lock(&(philo->print_mutex));
-		printf("%zu %zu %s\n", now, philo->index, action);
-		pthread_mutex_unlock(&(philo->print_mutex));
-	}
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec * 0.001));
+}
+
+void	update_time(t_philo *philo)
+{
+	philo->time_count = get_time();
+}
+
+size_t	delta_time(long long time)
+{
+	if (time > 0)
+		return (get_time() - time);
+	return (0);
 }

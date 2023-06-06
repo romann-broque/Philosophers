@@ -12,6 +12,7 @@ PATH_SRCS	+= srcs/
 PATH_SRCS	+= srcs/diner/
 PATH_SRCS	+= srcs/diner/dead_action/
 PATH_SRCS	+= srcs/diner/philo_action/
+PATH_SRCS	+= srcs/diner/time/
 PATH_SRCS	+= srcs/get_args/
 PATH_SRCS	+= srcs/print/
 
@@ -30,11 +31,16 @@ SRCS		+= init_philo.c
 
 SRCS		+= philo_routine.c
 SRCS		+= philo_states.c
+SRCS		+= states_utils.c
 
 ### srcs/diner/dead_action/
 
 SRCS		+= dead_routine.c
 SRCS		+= dead_routine_utils.c
+
+### srcs/diner/time/
+
+SRCS		+= time_utils.c
 
 ### srcs/get_args/
 
