@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 19:36:57 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/05 15:08:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/06 13:23:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	init_table(t_table *table, t_stat *stats)
 	{
 		pthread_mutex_init(&(table->action_mutex), NULL);
 		table->philo_array = init_philo_array(stats->nb_philo, table->forks);
-		pthread_mutex_init(&(table->action_mutex), NULL);
 		set_philo_settings(table);
 	}
 }

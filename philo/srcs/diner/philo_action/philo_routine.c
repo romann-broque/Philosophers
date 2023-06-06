@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 13:45:04 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/05 19:04:14 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/06 13:23:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	*philo_routine(t_philo *philo)
 		think_state(philo);
 		pthread_mutex_unlock(philo->action_mutex);
 		pthread_mutex_lock(philo->action_mutex);
-		usleep(1000);
 	}
 	pthread_mutex_unlock(philo->action_mutex);
 	return (NULL);
