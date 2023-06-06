@@ -6,11 +6,23 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 14:30:33 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 14:34:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/06 14:38:34 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static void	grab_fork(t_fork *fork, t_philo *philo)
+{
+	pthread_mutex_lock(&(fork->mutex));
+	print_philo_act(philo, FORK_MESSAGE);
+}
+
+static void	drop_forks(t_philo *philo)
+{
+	pthread_mutex_unlock(&(philo->left_fork->mutex));
+	pthread_mutex_unlock(&(philo->right_fork->mutex));
+}
 
 void	eat_state(t_philo *philo)
 {

@@ -31,7 +31,6 @@ SRCS		+= init_philo.c
 
 SRCS		+= philo_routine.c
 SRCS		+= philo_states.c
-SRCS		+= states_utils.c
 
 ### srcs/diner/dead_action/
 

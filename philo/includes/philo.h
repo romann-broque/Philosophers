@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 14:36:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/06 14:38:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ bool	is_diner_finished(t_table *table);
 
 size_t	get_time(void);
 size_t	delta_time(long long time);
+void	exec_action(const suseconds_t ms);
 
 ////		PHILO_ACTION		////
 
@@ -191,12 +192,6 @@ void	*philo_routine(t_philo *philo);
 void	eat_state(t_philo *philo);
 void	sleep_state(t_philo *philo);
 void	think_state(t_philo *philo);
-
-//// states_utils.c
-
-void	grab_fork(t_fork *fork, t_philo *philo);
-void	drop_forks(t_philo *philo);
-void	exec_action(const suseconds_t ms);
 
 ///		GET_ARGS	///
 
