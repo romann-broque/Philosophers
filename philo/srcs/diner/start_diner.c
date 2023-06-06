@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 19:21:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 14:16:54 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/06 15:07:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	launch_simulation(t_table *table)
 {
 	table->start_time = get_time();
 	start_threads(table);
+	table->can_start = true;
 	pthread_join(table->dead_thread, NULL);
 }
 
