@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_table.c                                      :+:      :+:    :+:   */
+/*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 19:37:56 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/05 21:19:33 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/02 13:45:04 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/09 14:42:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	clean_philo(t_table *table)
+static void	delay_even(t_philo *philo)
 {
-	const size_t	nb_forks = table->stats->nb_philo;
-	t_philo *const	philo_array = table->philo_array;
-	size_t			i;
-
-	i = 0;
-	while (i < nb_forks)
-	{
-		pthread_detach(philo_array[i].thread);
-		++i;
-	}
+	if (philo->index % 2)
+		exec_action(1);
 }
 
-void	clean_table(t_table *table)
+void	*philo_routine(t_philo *philo)
 {
-	clean_philo(table);
-	free(table->forks);
+	while (philo->left_dinner > 0)
+	{
+		delay_even(philo);
+		eat_state(philo);
+		sleep_state(philo);
+		think_state(philo);
+	}
+	return (NULL);
 }

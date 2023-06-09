@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 12:35:11 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 14:35:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/09 14:14:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*dead_philo_routine(t_philo *philo, t_stat *stats)
 	return (philo);
 }
 
-bool	is_diner_finished(t_table *table)
+bool	is_dinner_finished(t_table *table)
 {
 	t_philo *const	philo_array = table->philo_array;
 	size_t			i;
@@ -41,7 +41,7 @@ bool	is_diner_finished(t_table *table)
 	i = 0;
 	while (i < table->stats->nb_philo)
 	{
-		if (philo_array[i].left_diner > 0)
+		if (philo_array[i].left_dinner > 0)
 			return (false);
 		++i;
 	}

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:02:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 20:23:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/09 14:38:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static int	get_stat_value(t_stat *stats, char **av)
 	error_val |= ft_atolu_check(&(stats->eat_time), av[2]);
 	error_val |= ft_atolu_check(&(stats->sleep_time), av[3]);
 	if (av[4] != NULL)
-		error_val |= ft_atolu_check((size_t *)&(stats->nb_diner), av[4]);
+		error_val |= ft_atolu_check((size_t *)&(stats->nb_dinner), av[4]);
 	else
-		stats->nb_diner = INFINITE_DINER;
+		stats->nb_dinner = INFINITE_DINNER;
 	return (error_val);
 }
 

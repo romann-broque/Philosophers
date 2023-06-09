@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 15:07:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/09 14:38:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define DIE_TIME_MESSAGE	"Time to die (ms)"
 # define EAT_TIME_MESSAGE	"Time to eat (ms)"
 # define SLEEP_TIME_MESSAGE	"Time to sleep (ms)"
-# define NB_DINER_MESSAGE	"Number of time each philosopher must eat"
+# define NB_DINNER_MESSAGE	"Number of time each philosopher must eat"
 # define FORK_MESSAGE		"has taken a fork"
 # define EAT_MESSAGE		"is eating"
 # define SLEEP_MESSAGE		"is sleeping"
@@ -50,7 +50,7 @@
 
 # define MIN_EXPECTED_ARG	4
 # define MAX_EXPECTED_ARG	5
-# define INFINITE_DINER		-1
+# define INFINITE_DINNER	-1
 
 // COLORS //
 
@@ -107,7 +107,7 @@ typedef struct s_stat
 	size_t	die_time;
 	size_t	eat_time;
 	size_t	sleep_time;
-	ssize_t	nb_diner;
+	ssize_t	nb_dinner;
 }				t_stat;
 
 typedef struct s_philo
@@ -116,14 +116,13 @@ typedef struct s_philo
 	t_fork			*left_fork;
 	t_fork			*right_fork;
 	t_state			state;
-	size_t			left_diner;
+	size_t			left_dinner;
 	size_t			*start_time;
 	suseconds_t		sleep_time;
 	suseconds_t		eat_time;
 	suseconds_t		time_count;
 	pthread_t		thread;
 	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	*action_mutex;
 	bool			*sbd_dead;
 	bool			*can_start;
 }				t_philo;
@@ -144,7 +143,7 @@ typedef struct s_table
 /// FUNCTIONS ///
 /////////////////
 
-///		DINER		///
+///		dinner		///
 
 // clean_table.c
 
@@ -159,9 +158,9 @@ void	set_philo_settings(t_table *table);
 
 void	init_table(t_table *table, t_stat *stats);
 
-// start_diner.c
+// start_dinner.c
 
-void	start_diner(t_stat *stats);
+void	start_dinner(t_stat *stats);
 
 ////	DEAD_ACTION		////
 
@@ -172,7 +171,7 @@ void	*dead_routine(t_table *table);
 /// dead_routine_utils.c
 
 void	*dead_philo_routine(t_philo *philo, t_stat *stats);
-bool	is_diner_finished(t_table *table);
+bool	is_dinner_finished(t_table *table);
 
 ////	TIME		////
 

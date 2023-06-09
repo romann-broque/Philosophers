@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_diner.c                                      :+:      :+:    :+:   */
+/*   start_dinner.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 19:21:37 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/06 15:07:35 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/09 14:41:41 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/09 14:41:44 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	launch_simulation(t_table *table)
 	pthread_join(table->dead_thread, NULL);
 }
 
-void	start_diner(t_stat *stats)
+void	start_dinner(t_stat *stats)
 {
 	t_table	table;
 
