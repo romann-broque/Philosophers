@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 22:40:39 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/11 22:02:05 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/11 22:50:59 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	init_philo(
 	philo->start_time = &(table->start_time);
 	philo->sbd_dead = &(table->sbd_dead);
 	philo->can_start = &(table->can_start);
+	philo->action_mutex = &(table->action_mutex);
+	philo->eat_mutex = &(table->eat_mutex);
 	pthread_mutex_init(&(philo->print_mutex), NULL);
 }
 

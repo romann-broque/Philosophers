@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/10 16:35:43 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/11 22:53:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ typedef struct s_philo
 	suseconds_t		time_count;
 	pthread_t		thread;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	*action_mutex;
+	pthread_mutex_t	*eat_mutex;
 	bool			*sbd_dead;
 	bool			*can_start;
 }				t_philo;
@@ -134,6 +136,7 @@ typedef struct s_table
 	t_philo			*philo_array;
 	pthread_t		dead_thread;
 	pthread_mutex_t	action_mutex;
+	pthread_mutex_t	eat_mutex;
 	bool			sbd_dead;
 	bool			can_start;
 	size_t			start_time;
