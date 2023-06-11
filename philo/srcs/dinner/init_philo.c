@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 22:40:39 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/09 14:14:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/11 22:02:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,15 @@
 
 static void	init_philo(
 	t_philo *philo,
-	const size_t index,
-	t_fork *left_fork,
-	t_fork *right_fork
+	const size_t id,
+	t_fork **forks,
+	t_table *table
 	)
 {
-	philo->index = index;
+	philo->index = id;
 	philo->state = E_THINK;
-	philo->left_fork = left_fork;
-	philo->right_fork = right_fork;
-	pthread_mutex_init(&(philo->print_mutex), NULL);
-}
-
-static void	fill_philo_array(
-	t_philo *philo_array,
-	t_fork *forks,
-	const size_t nb_philo
-	)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < nb_philo)
-	{
-		if (i + 1 == nb_philo)
-			init_philo(philo_array + i, i + 1, forks + i, forks);
-		else
-			init_philo(philo_array + i, i + 1, forks + i, forks + i + 1);
-		++i;
-	}
-}
-
-t_philo	*init_philo_array(const size_t nb_philo, t_fork *forks)
-{
-	t_philo	*philo_array;
-
-	philo_array = (t_philo *)malloc(nb_philo * sizeof(t_philo));
-	if (philo_array != NULL)
-		fill_philo_array(philo_array, forks, nb_philo);
-	return (philo_array);
-}
-
-static void	set_philo_set(t_philo *philo, t_table *table)
-{
+	philo->left_fork = forks[0];
+	philo->right_fork = forks[1];
 	philo->left_dinner = table->stats->nb_dinner;
 	philo->sleep_time = table->stats->sleep_time;
 	philo->eat_time = table->stats->eat_time;
@@ -64,17 +30,37 @@ static void	set_philo_set(t_philo *philo, t_table *table)
 	philo->start_time = &(table->start_time);
 	philo->sbd_dead = &(table->sbd_dead);
 	philo->can_start = &(table->can_start);
+	pthread_mutex_init(&(philo->print_mutex), NULL);
 }
 
-void	set_philo_settings(t_table *table)
+static void	fill_philo_array(
+	t_philo *philo_array,
+	t_table *table,
+	const size_t nb_philo
+	)
 {
-	t_philo *const	philo_array = table->philo_array;
+	t_fork *const	forks_array = table->forks;
+	t_fork			*forks[2];
+	size_t			id;
 	size_t			i;
 
 	i = 0;
-	while (i < table->stats->nb_philo)
+	while (i < nb_philo)
 	{
-		set_philo_set(philo_array + i, table);
+		id = i + 1;
+		forks[0] = forks_array + i;
+		forks[1] = forks_array + id % nb_philo;
+		init_philo(philo_array + i, id, forks, table);
 		++i;
 	}
+}
+
+t_philo	*init_philo_array(const size_t nb_philo, t_table *table)
+{
+	t_philo	*philo_array;
+
+	philo_array = (t_philo *)malloc(nb_philo * sizeof(t_philo));
+	if (philo_array != NULL)
+		fill_philo_array(philo_array, table, nb_philo);
+	return (philo_array);
 }

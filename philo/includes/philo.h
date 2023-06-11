@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/09 14:38:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/10 16:35:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,8 +151,7 @@ void	clean_table(t_table *table);
 
 // init_philo.c
 
-t_philo	*init_philo_array(const size_t nb_philo, t_fork *forks);
-void	set_philo_settings(t_table *table);
+t_philo	*init_philo_array(const size_t nb_philo, t_table *table);
 
 // init_table.c
 
