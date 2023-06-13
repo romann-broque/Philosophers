@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/13 22:25:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/13 22:48:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,9 @@ void			init_manager(t_manager *manager);
 
 /// init_philosophers.c
 
-t_philosopher	*init_philosophers(const size_t nb_philosophers);
+t_philosopher	*init_philosophers(
+					pthread_mutex_t *forks,
+					const size_t nb_philosophers);
 
 /// init_table.c
 
