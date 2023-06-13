@@ -20,6 +20,7 @@ SRCS		+= philo.c
 ### srcs/dinner/
 
 SRCS		+= init_forks.c
+SRCS		+= init_manager.c
 SRCS		+= init_philosophers.c
 SRCS		+= init_table.c
 SRCS		+= clean_table.c

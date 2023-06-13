@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/13 21:37:30 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/13 22:02:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,10 @@ typedef struct s_table
 // init_forks.c
 
 pthread_mutex_t	*init_forks(const size_t nb_forks);
+
+// init_manager.c
+
+void			init_manager(t_manager *manager);
 
 // init_philosophers.c
 
