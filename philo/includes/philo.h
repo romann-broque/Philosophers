@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/11 22:53:18 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/13 19:05:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@
 
 # define MIN_EXPECTED_ARG	4
 # define MAX_EXPECTED_ARG	5
-# define INFINITE_DINNER	-1
 
 // COLORS //
 
@@ -77,69 +76,55 @@
 /// ENUM ///
 ////////////
 
-typedef enum s_state
+enum e_state
 {
 	E_SLEEP,
 	E_THINK,
 	E_EAT,
 	E_DEAD
-}			t_state;
-
-typedef enum s_fork_state
-{
-	TAKEN,
-	FREE
-}			t_fork_state;
+};
 
 ///////////////////
 /// STRUCTURES ///
 //////////////////
 
-typedef struct s_fork
+typedef struct s_philosopher
 {
-	t_fork_state	state;
-	pthread_mutex_t	mutex;
-}				t_fork;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	size_t			id;
+	enum e_state	state;
+	size_t			nb_dinner_eaten;
+	suseconds_t		time_since_last_dinner;
+}				t_philosopher;
 
-typedef struct s_stat
+typedef struct s_manager
 {
-	size_t	nb_philo;
-	size_t	die_time;
-	size_t	eat_time;
-	size_t	sleep_time;
-	ssize_t	nb_dinner;
-}				t_stat;
+	suseconds_t		start_dinner_time;
+	pthread_mutex_t	speak_locker;
+	pthread_mutex_t	action_locker;
+	pthread_mutex_t	eat_locker;
+	bool			is_a_philosopher_dead;
+	bool			can_dinner_start;
+}				t_manager;
 
-typedef struct s_philo
+typedef struct s_dinner_config
 {
-	size_t			index;
-	t_fork			*left_fork;
-	t_fork			*right_fork;
-	t_state			state;
-	size_t			left_dinner;
-	size_t			*start_time;
-	suseconds_t		sleep_time;
-	suseconds_t		eat_time;
-	suseconds_t		time_count;
-	pthread_t		thread;
-	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	*action_mutex;
-	pthread_mutex_t	*eat_mutex;
-	bool			*sbd_dead;
-	bool			*can_start;
-}				t_philo;
+	pthread_t	*threads;
+	size_t		nb_philosopher;
+	size_t		die_time;
+	size_t		eat_time;
+	size_t		sleep_time;
+	size_t		nb_dinner;
+	bool		is_a_max_nb_dinner;
+}				t_dinner_config;
 
 typedef struct s_table
 {
-	t_stat			*stats;
-	t_fork			*forks;
-	t_philo			*philo_array;
-	pthread_t		dead_thread;
-	pthread_mutex_t	action_mutex;
-	pthread_mutex_t	eat_mutex;
-	bool			sbd_dead;
-	bool			can_start;
-	size_t			start_time;
+	t_manager			manager;
+	pthread_mutex_t		*fork;
+	t_philosopher		*philosophers;
+
 }				t_table;
 
 //////////////////
@@ -148,52 +133,9 @@ typedef struct s_table
 
 ///		dinner		///
 
-// clean_table.c
-
-void	clean_table(t_table *table);
-
-// init_philo.c
-
-t_philo	*init_philo_array(const size_t nb_philo, t_table *table);
-
-// init_table.c
-
-void	init_table(t_table *table, t_stat *stats);
-
 // start_dinner.c
 
-void	start_dinner(t_stat *stats);
-
-////	DEAD_ACTION		////
-
-/// dead_routine.c
-
-void	*dead_routine(t_table *table);
-
-/// dead_routine_utils.c
-
-void	*dead_philo_routine(t_philo *philo, t_stat *stats);
-bool	is_dinner_finished(t_table *table);
-
-////	TIME		////
-
-/// time_utils.c
-
-size_t	get_time(void);
-size_t	delta_time(long long time);
-void	exec_action(const size_t ms);
-
-////		PHILO_ACTION		////
-
-/// philo_routine.c
-
-void	*philo_routine(t_philo *philo);
-
-/// philo_states.c
-
-void	eat_state(t_philo *philo);
-void	sleep_state(t_philo *philo);
-void	think_state(t_philo *philo);
+void	start_dinner(t_dinner_config *config);
 
 ///		GET_ARGS	///
 
@@ -201,22 +143,18 @@ void	think_state(t_philo *philo);
 
 int		ft_atolu_check(unsigned long *ret_value, const char *str);
 
-// get_stat.c
+// get_config.c
 
-int		get_stat(t_stat *stats, const int ac, char **av);
+int		get_config(t_dinner_config *config, const int ac, char **av);
 
 ///		PRINT		///
-
-// print_philo_act.c
-
-void	print_philo_act(t_philo *philo, const char *action);
 
 // print_error.c
 
 void	print_error(const char *str);
 
-// print_stat.c
+// print_config.c
 
-void	print_stat(t_stat *stats);
+void	print_config(t_dinner_config *config);
 
 #endif

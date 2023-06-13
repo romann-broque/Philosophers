@@ -10,9 +10,6 @@ SHELL		= /usr/bin/bash
 
 PATH_SRCS	+= srcs/
 PATH_SRCS	+= srcs/dinner/
-PATH_SRCS	+= srcs/dinner/dead_action/
-PATH_SRCS	+= srcs/dinner/philo_action/
-PATH_SRCS	+= srcs/dinner/time/
 PATH_SRCS	+= srcs/get_args/
 PATH_SRCS	+= srcs/print/
 
@@ -22,35 +19,17 @@ SRCS		+= philo.c
 
 ### srcs/dinner/
 
-SRCS		+= clean_table.c
-SRCS		+= init_table.c
 SRCS		+= start_dinner.c
-SRCS		+= init_philo.c
-
-### srcs/dinner/philo_action/
-
-SRCS		+= philo_routine.c
-SRCS		+= philo_states.c
-
-### srcs/dinner/dead_action/
-
-SRCS		+= dead_routine.c
-SRCS		+= dead_routine_utils.c
-
-### srcs/dinner/time/
-
-SRCS		+= time_utils.c
 
 ### srcs/get_args/
 
 SRCS		+= ft_atolu_check.c
-SRCS		+= get_stat.c
+SRCS		+= get_config.c
 
 ### srcs/print/
 
-SRCS		+= print_philo_act.c
 SRCS		+= print_error.c
-SRCS		+= print_stat.c
+SRCS		+= print_config.c
 
 vpath %.c $(PATH_SRCS)
 
