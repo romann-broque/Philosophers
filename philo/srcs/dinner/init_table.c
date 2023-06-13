@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_dinner.c                                     :+:      :+:    :+:   */
+/*   init_table.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 14:41:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/13 21:34:28 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/13 19:15:09 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/13 21:34:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	start_dinner(t_dinner_config *config)
+t_table	init_table(t_dinner_config *config)
 {
 	t_table	table;
 
-	table = init_table(config);
-	(void)table;
-	print_config(config);
-	clean_table(&table);
+	table.forks = init_forks(config->nb_philosopher);
+	table.philosophers = init_philosophers(config->nb_philosopher);
+	return (table);
 }

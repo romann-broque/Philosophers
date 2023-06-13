@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/13 19:05:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/13 21:37:30 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ typedef struct s_dinner_config
 typedef struct s_table
 {
 	t_manager			manager;
-	pthread_mutex_t		*fork;
+	pthread_mutex_t		*forks;
 	t_philosopher		*philosophers;
 
 }				t_table;
@@ -133,28 +133,44 @@ typedef struct s_table
 
 ///		dinner		///
 
+// init_forks.c
+
+pthread_mutex_t	*init_forks(const size_t nb_forks);
+
+// init_philosophers.c
+
+t_philosopher	*init_philosophers(const size_t nb_philosophers);
+
+// init_table.c
+
+t_table			init_table(t_dinner_config *config);
+
+// clean_table.c
+
+void			clean_table(t_table *table);
+
 // start_dinner.c
 
-void	start_dinner(t_dinner_config *config);
+void			start_dinner(t_dinner_config *config);
 
 ///		GET_ARGS	///
 
 // ft_atolu_check.c
 
-int		ft_atolu_check(unsigned long *ret_value, const char *str);
+int				ft_atolu_check(unsigned long *ret_value, const char *str);
 
 // get_config.c
 
-int		get_config(t_dinner_config *config, const int ac, char **av);
+int				get_config(t_dinner_config *config, const int ac, char **av);
 
 ///		PRINT		///
 
 // print_error.c
 
-void	print_error(const char *str);
+void			print_error(const char *str);
 
 // print_config.c
 
-void	print_config(t_dinner_config *config);
+void			print_config(t_dinner_config *config);
 
 #endif
