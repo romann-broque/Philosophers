@@ -20,6 +20,7 @@ SRCS		+= philo.c
 
 ### srcs/dinner/
 
+SRCS		+= philo_routine.c
 SRCS		+= start_dinner.c
 SRCS		+= start_simulation.c
 

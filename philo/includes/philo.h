@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/13 22:48:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/13 23:19:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,11 +134,15 @@ typedef struct s_table
 
 // start_dinner.c
 
-void			start_dinner(t_table *table);
+void			start_dinner(t_table *table, t_dinner_config *config);
 
 // start_simulation.c
 
 void			start_simulation(t_dinner_config *config);
+
+// philo_routine.c
+
+void			*philo_routine(t_philosopher *philo);
 
 ////	table		////
 

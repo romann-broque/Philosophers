@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_simulation.c                                 :+:      :+:    :+:   */
+/*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 14:41:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/13 23:03:29 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/13 23:16:46 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/13 23:20:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	start_simulation(t_dinner_config *config)
+void	*philo_routine(t_philosopher *philo)
 {
-	t_table	table;
-
-	table = init_table(config);
-	print_config(config);
-	start_dinner(&table, config);
-	clean_table(&table);
+	return (philo);
 }
