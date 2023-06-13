@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_config.c                                       :+:      :+:    :+:   */
+/*   init_config.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:02:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/13 22:58:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 01:57:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	print_arg_error(const int error)
 		print_error(BEYOND_LIMIT_ERROR_MESSAGE);
 }
 
-static int	get_config_value(t_dinner_config *config, char **av)
+static int	set_config_value(t_dinner_config *config, char **av)
 {
 	int	error_val;
 
@@ -39,18 +39,18 @@ static int	get_config_value(t_dinner_config *config, char **av)
 	return (error_val);
 }
 
-static int	init_config(t_dinner_config *config, char **av)
+static int	set_config(t_dinner_config *config, char **av)
 {
 	int	error_val;
 
-	error_val = get_config_value(config, av);
+	error_val = set_config_value(config, av);
 	if (error_val == NO_ERROR)
 		return (EXIT_SUCCESS);
 	print_arg_error(error_val);
 	return (EXIT_FAILURE);
 }
 
-int	get_config(t_dinner_config *config, const int ac, char **av)
+int	init_config(t_dinner_config *config, const int ac, char **av)
 {
 	int	ret_val;
 
@@ -60,6 +60,15 @@ int	get_config(t_dinner_config *config, const int ac, char **av)
 	else if (ac > MAX_EXPECTED_ARG)
 		print_error(TOO_MANY_ARG);
 	else
-		ret_val = init_config(config, av);
+		ret_val = set_config(config, av);
 	return (ret_val);
+}
+
+t_dinner_config	*get_config(t_dinner_config *config_ref)
+{
+	static t_dinner_config	*config = NULL;
+
+	if (config == NULL)
+		config = config_ref;
+	return (config);
 }

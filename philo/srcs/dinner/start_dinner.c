@@ -6,13 +6,16 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:17:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/13 23:21:10 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 01:52:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	init_threads(t_table *table, t_dinner_config *config)
+static void	init_threads(
+	t_table *table,
+	t_dinner_config *config
+	)
 {
 	size_t	i;
 
@@ -30,11 +33,18 @@ static void	init_threads(t_table *table, t_dinner_config *config)
 	}
 }
 
+static void	start_threads(t_table *table, const t_dinner_config *config)
+{
+	t_manager *const	manager = &(table->manager);
+
+	manager->can_dinner_start = true;
+	manager_routine(table, config);
+}
+
 void	start_dinner(t_table *table, t_dinner_config *config)
 {
+	get_config(config);
 	init_threads(table, config);
 	if (config->threads != NULL)
-	{
-		table->manager.can_dinner_start = true;
-	}
+		start_threads(table, config);
 }

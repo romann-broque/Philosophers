@@ -20,6 +20,7 @@ SRCS		+= philo.c
 
 ### srcs/dinner/
 
+SRCS		+= manager_routine.c
 SRCS		+= philo_routine.c
 SRCS		+= start_dinner.c
 SRCS		+= start_simulation.c
@@ -35,12 +36,13 @@ SRCS		+= clean_table.c
 ### srcs/get_args/
 
 SRCS		+= ft_atolu_check.c
-SRCS		+= get_config.c
+SRCS		+= init_config.c
 
 ### srcs/print/
 
 SRCS		+= print_error.c
 SRCS		+= print_config.c
+SRCS		+= print_state.c
 
 vpath %.c $(PATH_SRCS)
 
