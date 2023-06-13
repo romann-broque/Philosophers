@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:22:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/13 22:48:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/13 22:55:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	set_philo(
 	philo->id = id;
 	philo->state = E_THINK;
 	philo->nb_dinner_eaten = 0;
+	philo->time_since_last_dinner = 0;
 	philo->left_fork = forks[0];
 	philo->right_fork = forks[1];
-	philo->nb_dinner_eaten = 0;
 }
 
 static void	set_philosophers(
