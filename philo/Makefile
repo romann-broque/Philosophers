@@ -12,6 +12,7 @@ PATH_SRCS	+= srcs/
 PATH_SRCS	+= srcs/dinner/
 PATH_SRCS	+= srcs/dinner/table/
 PATH_SRCS	+= srcs/dinner/table/manager/
+PATH_SRCS	+= srcs/dinner/table/philosopher/
 PATH_SRCS	+= srcs/get_args/
 PATH_SRCS	+= srcs/print/
 PATH_SRCS	+= srcs/time/
@@ -22,7 +23,6 @@ SRCS		+= philo.c
 
 ### srcs/dinner/
 
-SRCS		+= philo_routine.c
 SRCS		+= start_dinner.c
 SRCS		+= start_simulation.c
 
@@ -34,10 +34,15 @@ SRCS		+= init_philosophers.c
 SRCS		+= init_table.c
 SRCS		+= clean_table.c
 
-### srcs/dinner/manager/
+### srcs/dinner/table/manager/
 
 SRCS		+= manager_routine.c
 SRCS		+= get_manager.c
+
+### srcs/dinner/table/philosopher/
+
+SRCS		+= philo_routine.c
+SRCS		+= philo_states.c
 
 ### srcs/get_args/
 
@@ -48,7 +53,7 @@ SRCS		+= init_config.c
 
 SRCS		+= print_error.c
 SRCS		+= print_config.c
-SRCS		+= print_state.c
+SRCS		+= print_philo_action.c
 
 ### srcs/time/
 

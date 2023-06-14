@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:02:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 01:57:06 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 11:22:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	set_config_value(t_dinner_config *config, char **av)
 	error_val |= ft_atolu_check(&(config->eat_time), av[2]);
 	error_val |= ft_atolu_check(&(config->sleep_time), av[3]);
 	if (av[4] != NULL)
-		error_val |= ft_atolu_check((size_t *)&(config->nb_dinner), av[4]);
+		error_val |= ft_atolu_check(&(config->nb_dinner), av[4]);
 	else
 		config->nb_dinner = ULONG_MAX;
 	config->is_a_max_nb_dinner = (av[4] == NULL);

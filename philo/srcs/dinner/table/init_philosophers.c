@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:22:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/13 22:55:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 10:59:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ static void	set_philosophers(
 {
 	pthread_mutex_t	*fork_couple[2];
 	size_t			i;
+	size_t			id;
 
 	i = 0;
 	while (i < nb_philosophers)
 	{
+		id = i + 1;
 		fork_couple[0] = forks + i;
-		fork_couple[1] = forks + i % nb_philosophers;
-		set_philo(philosophers + i, i + 1, fork_couple);
+		fork_couple[1] = forks + id % nb_philosophers;
+		set_philo(philosophers + i, id, fork_couple);
 		++i;
 	}
 }

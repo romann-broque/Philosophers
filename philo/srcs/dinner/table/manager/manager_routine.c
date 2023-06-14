@@ -6,23 +6,40 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 01:47:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 10:33:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 11:21:01 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+static bool	is_dead(t_philosopher *philo, const t_dinner_config *config)
+{
+	size_t	time;
+
+	time = delta_time(philo->time_since_last_dinner);
+	if (time >= config->die_time)
+	{
+		print_philo_action(philo, DEAD_MESSAGE);
+		philo->state = E_DEAD;
+	}
+	return (philo->state == E_DEAD);
+}
+
 static bool	is_a_philo_dead(
 	t_philosopher *philosophers,
-	const size_t nb_philosopher
+	const t_dinner_config *config
 	)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < nb_philosopher && philosophers[i].state != E_DEAD)
+	while (i < config->nb_philosopher)
+	{
+		if (is_dead(philosophers + i, config) == true)
+			break ;
 		++i;
-	return (i < nb_philosopher);
+	}
+	return (i < config->nb_philosopher);
 }
 
 static bool	are_dinners_finished(
@@ -44,7 +61,7 @@ static bool	is_simulation_finished(
 	const t_dinner_config *config
 	)
 {
-	return (is_a_philo_dead(philosophers, config->nb_philosopher)
+	return (is_a_philo_dead(philosophers, config)
 		|| are_dinners_finished(philosophers, config));
 }
 

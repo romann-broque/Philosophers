@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 10:39:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 11:25:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@
 # define NOT_ENOUGH_ARG				"not enough arguments"
 # define TOO_MANY_ARG				"too many arguments"
 # define SIGN_ERROR_MESSAGE			"numbers must be positive"
-# define NON_DIGIT_ERROR_MESSAGE	"arguments must be numbers"
-# define BEYOND_LIMIT_ERROR_MESSAGE	"arguments must be numbers under ULONG_MAX"
+# define NON_DIGIT_ERROR_MESSAGE	"parameters must be numbers"
+# define BEYOND_LIMIT_ERROR_MESSAGE	"parameters must be numbers under LONG_MAX"
 
 // COUNT //
 
@@ -71,6 +71,7 @@
 # define NEGATIVE_MASK		0x0001
 # define NON_DIGIT_MASK		0x0010
 # define BEYOND_LIMIT_MASK	0x0100
+# define BEYOND_ULIMIT_MASK	0x1000
 
 ////////////
 /// ENUM ///
@@ -95,12 +96,12 @@ typedef struct s_philosopher
 	size_t			id;
 	enum e_state	state;
 	size_t			nb_dinner_eaten;
-	suseconds_t		time_since_last_dinner;
+	size_t			time_since_last_dinner;
 }				t_philosopher;
 
 typedef struct s_manager
 {
-	suseconds_t		start_dinner_time;
+	size_t			start_dinner_time;
 	pthread_mutex_t	speak_locker;
 	pthread_mutex_t	action_locker;
 	pthread_mutex_t	eat_locker;
@@ -178,6 +179,16 @@ t_manager		*get_manager(t_manager *manager);
 
 void			manager_routine(t_table *table, const t_dinner_config *config);
 
+/////	philosopher		/////
+
+//// philo_routine.c
+
+void			*philo_routine(t_philosopher *philo);
+
+//// philo_states.c
+
+void			eat_state(t_philosopher *philo, t_dinner_config *config);
+
 ///		GET_ARGS	///
 
 // ft_atolu_check.c
@@ -199,9 +210,9 @@ void			print_error(const char *str);
 
 void			print_config(t_dinner_config *config);
 
-// print_state.c
+// print_philo_action.c
 
-void			print_state(t_philosopher *philo, const char *message);
+void			print_philo_action(t_philosopher *philo, const char *message);
 
 ///		TIME		///
 

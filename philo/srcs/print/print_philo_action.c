@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_utils.c                                       :+:      :+:    :+:   */
+/*   print_philo_action.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 10:16:18 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 11:20:55 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/14 11:24:22 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/14 11:24:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-size_t	get_time(void)
+void	print_philo_action(t_philosopher *philo, const char *message)
 {
-	struct timeval	time;
+	t_manager *const	manager = get_manager(NULL);
+	size_t				now;
 
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec * 0.001));
-}
-
-size_t	delta_time(long long time)
-{
-	if (time > 0)
-		return (get_time() - time);
-	return (0);
-}
-
-void	exec_action(const size_t micro_seconds)
-{
-	usleep(1000 * micro_seconds);
+	now = delta_time(philo->time_since_last_dinner);
+	pthread_mutex_lock(&(manager->speak_locker));
+	printf("%zu %zu %s\n", now, philo->id, message);
+	pthread_mutex_unlock(&(manager->speak_locker));
 }

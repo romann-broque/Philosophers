@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 17:19:25 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/01 18:02:05 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/14 11:14:02 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/14 11:15:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static bool	is_inbounds(
 	const unsigned long added_nb
 	)
 {
-	const unsigned long	bound = (ULONG_MAX - added_nb) / 10;
+	const unsigned long	bound = (LONG_MAX - added_nb) / 10;
 
 	return (nb <= bound);
 }
@@ -57,7 +57,7 @@ int	ft_atolu_check(unsigned long *nb_dest, const char *str)
 		if (is_inbounds(nb, *str - '0') == false)
 		{
 			if (!(ret_val & NEGATIVE_MASK))
-				ret_val = BEYOND_LIMIT_MASK;
+				ret_val = BEYOND_ULIMIT_MASK;
 			break ;
 		}
 		nb = nb * 10 + (*str - '0');
