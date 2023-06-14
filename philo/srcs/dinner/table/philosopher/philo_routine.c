@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:16:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 10:42:45 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 11:37:14 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	*philo_routine(t_philosopher *philo)
 
 	philo->time_since_last_dinner = manager->start_dinner_time;
 	while (philo->nb_dinner_eaten < config->nb_dinner)
+	{
 		eat_state(philo, config);
+		sleep_state(philo, config);
+		think_state(philo, config);
+	}
 	return (philo);
 }

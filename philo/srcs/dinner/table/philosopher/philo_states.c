@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:42:26 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 11:01:03 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 11:35:39 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,20 @@ void	eat_state(t_philosopher *philo, t_dinner_config *config)
 	exec_action(config->eat_time);
 	++(philo->nb_dinner_eaten);
 	drop_forks(philo);
+}
+
+void	sleep_state(t_philosopher *philo, t_dinner_config *config)
+{
+	philo->state = E_SLEEP;
+	print_philo_action(philo, SLEEP_MESSAGE);
+	exec_action(config->sleep_time);
+}
+
+void	think_state(
+	t_philosopher *philo,
+	__attribute__((unused))t_dinner_config *config
+	)
+{
+	philo->state = E_THINK;
+	print_philo_action(philo, THINK_MESSAGE);
 }
