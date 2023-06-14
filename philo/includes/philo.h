@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 11:31:32 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 16:47:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ typedef struct s_philosopher
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	size_t			id;
-	enum e_state	state;
 	size_t			nb_dinner_eaten;
 	size_t			time_since_last_dinner;
+	enum e_state	state;
 }				t_philosopher;
 
 typedef struct s_manager
@@ -105,6 +105,7 @@ typedef struct s_manager
 	pthread_mutex_t	speak_locker;
 	pthread_mutex_t	action_locker;
 	pthread_mutex_t	eat_locker;
+	pthread_mutex_t	state_locker;
 	bool			is_a_philosopher_dead;
 	bool			can_dinner_start;
 }				t_manager;
@@ -139,7 +140,7 @@ void			start_dinner(t_table *table, t_dinner_config *config);
 
 // start_simulation.c
 
-void			start_simulation(t_dinner_config *config);
+void			start_simulation(t_dinner_config *const config);
 
 // philo_routine.c
 
@@ -151,9 +152,9 @@ void			*philo_routine(t_philosopher *philo);
 
 pthread_mutex_t	*init_forks(const size_t nb_forks);
 
-/// init_manager.c
+/// set_manager.c
 
-void			init_manager(t_manager *manager);
+void			set_manager(t_manager *manager);
 
 /// init_philosophers.c
 
@@ -163,7 +164,7 @@ t_philosopher	*init_philosophers(
 
 /// init_table.c
 
-t_table			init_table(t_dinner_config *config);
+t_table			*init_table(t_dinner_config *config);
 
 /// clean_table.c
 
@@ -190,6 +191,10 @@ void			*philo_routine(t_philosopher *philo);
 void			eat_state(t_philosopher *philo, t_dinner_config *config);
 void			sleep_state(t_philosopher *philo, t_dinner_config *config);
 void			think_state(t_philosopher *philo, t_dinner_config *config);
+
+//// set_philo_state.c
+
+void			set_philo_state(t_philosopher *philo, const enum e_state state);
 
 ///		GET_ARGS	///
 

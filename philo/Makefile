@@ -29,9 +29,9 @@ SRCS		+= start_simulation.c
 ### srcs/dinner/table/
 
 SRCS		+= init_forks.c
-SRCS		+= init_manager.c
 SRCS		+= init_philosophers.c
 SRCS		+= init_table.c
+SRCS		+= set_manager.c
 SRCS		+= clean_table.c
 
 ### srcs/dinner/table/manager/
@@ -43,6 +43,7 @@ SRCS		+= get_manager.c
 
 SRCS		+= philo_routine.c
 SRCS		+= philo_states.c
+SRCS		+= set_philo_state.c
 
 ### srcs/get_args/
 

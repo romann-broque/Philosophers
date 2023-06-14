@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_table.c                                       :+:      :+:    :+:   */
+/*   set_manager.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 19:15:09 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 16:59:23 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/13 21:47:56 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/14 16:47:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_table	*init_table(t_dinner_config *config)
+void	set_manager(t_manager *manager)
 {
-	t_table *const	table = malloc(sizeof(t_table));
-
-	table->forks = init_forks(config->nb_philosopher);
-	table->philosophers
-		= init_philosophers(table->forks, config->nb_philosopher);
-	set_manager(&(table->manager));
-	return (table);
+	manager->start_dinner_time = 0;
+	pthread_mutex_init(&(manager->speak_locker), NULL);
+	pthread_mutex_init(&(manager->action_locker), NULL);
+	pthread_mutex_init(&(manager->eat_locker), NULL);
+	pthread_mutex_init(&(manager->state_locker), NULL);
+	manager->is_a_philosopher_dead = false;
+	manager->can_dinner_start = false;
 }

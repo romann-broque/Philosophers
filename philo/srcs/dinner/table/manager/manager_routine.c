@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 01:47:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 11:21:01 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 16:54:24 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 static bool	is_dead(t_philosopher *philo, const t_dinner_config *config)
 {
-	size_t	time;
+	t_manager *const	manager = get_manager(NULL);
+	size_t				time;
 
 	time = delta_time(philo->time_since_last_dinner);
 	if (time >= config->die_time)
 	{
 		print_philo_action(philo, DEAD_MESSAGE);
-		philo->state = E_DEAD;
+		set_philo_state(philo, E_DEAD);
+		manager->is_a_philosopher_dead = true;
 	}
 	return (philo->state == E_DEAD);
 }

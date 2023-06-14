@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:42:26 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 11:35:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 16:55:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ static void	drop_forks(t_philosopher *philo)
 
 void	eat_state(t_philosopher *philo, t_dinner_config *config)
 {
+	if (philo->state == E_DEAD)
+		return ;
 	grab_forks(philo);
-	philo->state = E_EAT;
+	set_philo_state(philo, E_EAT);
 	print_philo_action(philo, EAT_MESSAGE);
 	philo->time_since_last_dinner = get_time();
 	exec_action(config->eat_time);
@@ -43,7 +45,9 @@ void	eat_state(t_philosopher *philo, t_dinner_config *config)
 
 void	sleep_state(t_philosopher *philo, t_dinner_config *config)
 {
-	philo->state = E_SLEEP;
+	if (philo->state == E_DEAD)
+		return ;
+	set_philo_state(philo, E_SLEEP);
 	print_philo_action(philo, SLEEP_MESSAGE);
 	exec_action(config->sleep_time);
 }
@@ -53,6 +57,8 @@ void	think_state(
 	__attribute__((unused))t_dinner_config *config
 	)
 {
-	philo->state = E_THINK;
+	if (philo->state == E_DEAD)
+		return ;
+	set_philo_state(philo, E_THINK);
 	print_philo_action(philo, THINK_MESSAGE);
 }

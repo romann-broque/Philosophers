@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_manager.c                                     :+:      :+:    :+:   */
+/*   set_philo_state.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 21:47:56 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/13 22:56:12 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/14 16:39:29 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/14 16:49:29 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_manager(t_manager *manager)
+void	set_philo_state(t_philosopher *philo, const enum e_state state)
 {
-	manager->start_dinner_time = 0;
-	pthread_mutex_init(&(manager->speak_locker), NULL);
-	pthread_mutex_init(&(manager->action_locker), NULL);
-	pthread_mutex_init(&(manager->eat_locker), NULL);
-	manager->is_a_philosopher_dead = false;
-	manager->can_dinner_start = false;
+	t_manager *const	manager = get_manager(NULL);
+
+	if (philo->state != E_DEAD)
+	{
+		pthread_mutex_lock(&(manager->state_locker));
+		philo->state = state;
+		pthread_mutex_unlock(&(manager->state_locker));
+	}
 }
