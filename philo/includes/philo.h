@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 01:57:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 10:39:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,6 @@ void			start_dinner(t_table *table, t_dinner_config *config);
 
 void			start_simulation(t_dinner_config *config);
 
-// manager_routine.c
-
-void			manager_routine(t_table *table, const t_dinner_config *config);
-
 // philo_routine.c
 
 void			*philo_routine(t_philosopher *philo);
@@ -172,6 +168,16 @@ t_table			init_table(t_dinner_config *config);
 
 void			clean_table(t_table *table);
 
+/////	manager		/////
+
+//// get_manager.c
+
+t_manager		*get_manager(t_manager *manager);
+
+//// manager_routine.c
+
+void			manager_routine(t_table *table, const t_dinner_config *config);
+
 ///		GET_ARGS	///
 
 // ft_atolu_check.c
@@ -196,5 +202,13 @@ void			print_config(t_dinner_config *config);
 // print_state.c
 
 void			print_state(t_philosopher *philo, const char *message);
+
+///		TIME		///
+
+// time_utils.c
+
+size_t			get_time(void);
+size_t			delta_time(long long time);
+void			exec_action(const size_t micro_seconds);
 
 #endif

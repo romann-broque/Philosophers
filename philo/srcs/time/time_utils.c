@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_table.c                                       :+:      :+:    :+:   */
+/*   time_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 19:15:09 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 10:22:31 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/14 10:16:18 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/14 10:39:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_table	init_table(t_dinner_config *config)
+size_t	get_time(void)
 {
-	t_table	table;
+	struct timeval	time;
 
-	table.forks = init_forks(config->nb_philosopher);
-	table.philosophers = init_philosophers(table.forks, config->nb_philosopher);
-	init_manager(&(table.manager));
-	return (table);
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec * 0.001));
+}
+
+size_t	delta_time(long long time)
+{
+	if (time > 0)
+		return (get_time() - time);
+	return (0);
+}
+
+void	exec_action(const size_t micro_seconds)
+{
+	usleep(1000 * micro_seconds);
 }

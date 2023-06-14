@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:17:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 01:52:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/14 10:34:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	start_threads(t_table *table, const t_dinner_config *config)
 {
 	t_manager *const	manager = &(table->manager);
 
+	manager->start_dinner_time = get_time();
 	manager->can_dinner_start = true;
 	manager_routine(table, config);
 }
@@ -44,6 +45,7 @@ static void	start_threads(t_table *table, const t_dinner_config *config)
 void	start_dinner(t_table *table, t_dinner_config *config)
 {
 	get_config(config);
+	get_manager(&(table->manager));
 	init_threads(table, config);
 	if (config->threads != NULL)
 		start_threads(table, config);

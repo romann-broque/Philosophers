@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_table.c                                       :+:      :+:    :+:   */
+/*   get_manager.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 19:15:09 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 10:22:31 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/14 10:03:39 by rbroque           #+#    #+#             */
+/*   Updated: 2023/06/14 10:07:00 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_table	init_table(t_dinner_config *config)
+t_manager	*get_manager(t_manager *manager_ref)
 {
-	t_table	table;
+	static t_manager	*manager = NULL;
 
-	table.forks = init_forks(config->nb_philosopher);
-	table.philosophers = init_philosophers(table.forks, config->nb_philosopher);
-	init_manager(&(table.manager));
-	return (table);
+	if (manager == NULL)
+		manager = manager_ref;
+	return (manager);
 }
