@@ -13,6 +13,7 @@ PATH_SRCS	+= srcs/dinner/
 PATH_SRCS	+= srcs/dinner/table/
 PATH_SRCS	+= srcs/dinner/table/manager/
 PATH_SRCS	+= srcs/dinner/table/philosopher/
+PATH_SRCS	+= srcs/dinner/table/philosopher/states/
 PATH_SRCS	+= srcs/get_args/
 PATH_SRCS	+= srcs/print/
 PATH_SRCS	+= srcs/time/
@@ -42,8 +43,13 @@ SRCS		+= get_manager.c
 ### srcs/dinner/table/philosopher/
 
 SRCS		+= philo_routine.c
-SRCS		+= philo_states.c
 SRCS		+= set_philo_state.c
+
+### srcs/dinner/table/philosopher/states/
+
+SRCS		+= eat_state.c
+SRCS		+= sleep_state.c
+SRCS		+= think_state.c
 
 ### srcs/get_args/
 

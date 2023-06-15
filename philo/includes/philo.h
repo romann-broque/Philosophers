@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/15 10:26:04 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/15 23:44:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,15 +187,23 @@ void			manager_routine(t_table *table, const t_dinner_config *config);
 
 void			*philo_routine(t_philosopher *philo);
 
-//// philo_states.c
-
-void			eat_state(t_philosopher *philo, t_dinner_config *config);
-void			sleep_state(t_philosopher *philo, t_dinner_config *config);
-void			think_state(t_philosopher *philo, t_dinner_config *config);
-
 //// set_philo_state.c
 
 void			set_philo_state(t_philosopher *philo, const enum e_state state);
+
+/////	states			//////
+
+///// eat_state.c
+
+void			eat_state(t_philosopher *philo, t_dinner_config *config);
+
+///// sleep_state.c
+
+void			sleep_state(t_philosopher *philo, t_dinner_config *config);
+
+///// think_state.c
+
+void			think_state(t_philosopher *philo, t_dinner_config *config);
 
 ///		GET_ARGS	///
 
