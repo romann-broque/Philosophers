@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:16:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 16:50:06 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/15 22:19:06 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static bool	is_dinner_finished(
 {
 	bool	is_over;
 
-	pthread_mutex_lock(&(manager->action_locker));
-	is_over = (philo->nb_dinner_eaten < config->nb_dinner
-			&& manager->is_a_philosopher_dead == false);
-	pthread_mutex_unlock(&(manager->action_locker));
+	pthread_mutex_lock(&(manager->is_over_locker));
+	is_over = (philo->nb_dinner_eaten == config->nb_dinner
+			|| manager->is_a_philosopher_dead == true);
+	pthread_mutex_unlock(&(manager->is_over_locker));
 	return (is_over);
 }
 
