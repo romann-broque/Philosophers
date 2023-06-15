@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 01:47:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/15 23:04:44 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/16 00:23:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@ static bool	is_dead(t_philosopher *philo, const t_dinner_config *config)
 {
 	t_manager *const	manager = get_manager(NULL);
 	size_t				time;
-	bool				is_philo_dead;
 
 	pthread_mutex_lock(&(manager->state_locker));
-	is_philo_dead = false;
+	pthread_mutex_lock(&(manager->is_over_locker));
 	time = delta_time(philo->time_since_last_dinner);
 	if (time >= config->die_time)
 	{
+		manager->is_a_philosopher_dead = true;
+		pthread_mutex_unlock(&(manager->is_over_locker));
+		pthread_mutex_unlock(&(manager->state_locker));
 		print_philo_action(philo, DEAD_MESSAGE);
 		set_philo_state(philo, E_DEAD);
-		manager->is_a_philosopher_dead = true;
-		is_philo_dead = true;
+		return (true);
 	}
+	pthread_mutex_unlock(&(manager->is_over_locker));
 	pthread_mutex_unlock(&(manager->state_locker));
-	return (is_philo_dead);
+	return (false);
 }
 
 static bool	is_a_philo_dead(
@@ -43,10 +45,10 @@ static bool	is_a_philo_dead(
 	while (i < config->nb_philosopher)
 	{
 		if (is_dead(philosophers + i, config) == true)
-			break ;
+			return (true);
 		++i;
 	}
-	return (i < config->nb_philosopher);
+	return (false);
 }
 
 static bool	are_dinners_finished(

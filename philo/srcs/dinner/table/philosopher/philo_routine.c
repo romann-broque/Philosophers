@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:16:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/15 23:28:50 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/16 00:06:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static bool	is_dinner_finished(
+bool	is_dinner_finished(
 	const t_philosopher *philo,
 	t_manager *manager,
 	const t_dinner_config *config

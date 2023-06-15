@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:34:43 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 17:00:01 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/16 00:30:16 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	clean_table(t_table *table)
 {
 	(void)table;
 }
-// t_dinner_config *const	config = get_config(NULL);
-// kill_threads(config);
-// clean_forks(table->forks, config->nb_philosopher);
-// clean_manager(&(table->manager));
-// free(table->philosophers);
+	// t_dinner_config *const	config = get_config(NULL);
+	// kill_threads(config);
+	// clean_forks(table->forks, config->nb_philosopher);
+	// clean_manager(&(table->manager));
+	// free(table->philosophers);

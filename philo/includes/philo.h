@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/15 23:44:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/16 00:27:28 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,7 @@ void			set_philo_state(t_philosopher *philo, const enum e_state state);
 
 ///// eat_state.c
 
+bool			is_philo_alive(t_philosopher *philo);
 void			eat_state(t_philosopher *philo, t_dinner_config *config);
 
 ///// sleep_state.c
