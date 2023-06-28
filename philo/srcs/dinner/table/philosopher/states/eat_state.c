@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:40:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/16 00:27:37 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/28 09:51:01 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 
 static void	grab_forks(t_philosopher *philo)
 {
-	t_manager *const	manager = get_manager(NULL);
-
-	pthread_mutex_lock(&(manager->eat_locker));
 	pthread_mutex_lock(philo->left_fork);
 	print_philo_action(philo, FORK_MESSAGE);
 	pthread_mutex_lock(philo->right_fork);
 	print_philo_action(philo, FORK_MESSAGE);
-	pthread_mutex_unlock(&(manager->eat_locker));
 }
 
 static void	drop_forks(t_philosopher *philo)
