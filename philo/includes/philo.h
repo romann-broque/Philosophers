@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/28 12:15:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/28 14:33:39 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 
 # define MIN_EXPECTED_ARG	4
 # define MAX_EXPECTED_ARG	5
+# define STATE_NB			3
 
 // COLORS //
 
@@ -195,7 +196,6 @@ void			set_philo_state(t_philosopher *philo, const enum e_state state);
 
 ///// eat_state.c
 
-bool			is_philo_alive(t_philosopher *philo);
 void			eat_state(t_philosopher *philo, t_dinner_config *config);
 
 ///// sleep_state.c
