@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:16:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/16 00:06:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/28 10:14:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	wait_start(t_manager *manager)
 	while (manager->can_dinner_start == false)
 	{
 		pthread_mutex_unlock(&(manager->action_locker));
+		usleep(100);
 		pthread_mutex_lock(&(manager->action_locker));
 	}
 	pthread_mutex_unlock(&(manager->action_locker));
