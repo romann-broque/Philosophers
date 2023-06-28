@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/16 00:27:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/28 09:51:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ typedef struct s_manager
 	size_t			start_dinner_time;
 	pthread_mutex_t	speak_locker;
 	pthread_mutex_t	action_locker;
-	pthread_mutex_t	eat_locker;
 	pthread_mutex_t	state_locker;
 	pthread_mutex_t	is_over_locker;
 	bool			is_a_philosopher_dead;
