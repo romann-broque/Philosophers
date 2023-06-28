@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:16:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/28 10:14:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/28 12:15:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	wait_start(t_manager *manager)
 void	*philo_routine(t_philosopher *philo)
 {
 	t_dinner_config *const	config = get_config(NULL);
-	t_manager *const		manager = get_manager(NULL);
+	t_manager *const		manager = get_manager();
 
 	wait_start(manager);
 	pthread_mutex_lock(&(manager->state_locker));

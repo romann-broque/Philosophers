@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:17:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/15 23:10:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/28 12:15:42 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	start_threads(t_table *table, const t_dinner_config *config)
 void	start_dinner(t_table *table, t_dinner_config *config)
 {
 	get_config(config);
-	get_manager(&(table->manager));
+	init_manager(&(table->manager));
 	init_threads(table, config);
 	if (config->threads != NULL)
 		start_threads(table, config);

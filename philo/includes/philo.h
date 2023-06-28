@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/28 10:37:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/28 12:15:39 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,7 +174,8 @@ void			clean_table(t_table *table);
 
 //// get_manager.c
 
-t_manager		*get_manager(t_manager *manager);
+void			init_manager(t_manager *manager_ref);
+t_manager		*get_manager(void);
 
 //// manager_routine.c
 

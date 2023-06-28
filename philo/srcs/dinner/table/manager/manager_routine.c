@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 01:47:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/16 00:23:56 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/28 12:13:20 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	is_dead(t_philosopher *philo, const t_dinner_config *config)
 {
-	t_manager *const	manager = get_manager(NULL);
+	t_manager *const	manager = get_manager();
 	size_t				time;
 
 	pthread_mutex_lock(&(manager->state_locker));

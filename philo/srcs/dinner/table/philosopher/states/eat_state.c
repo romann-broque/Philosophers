@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:40:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/28 10:37:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/28 12:13:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	drop_forks(t_philosopher *philo)
 
 static void	reset_eat_status(t_philosopher *philo)
 {
-	t_manager *const	manager = get_manager(NULL);
+	t_manager *const	manager = get_manager();
 
 	pthread_mutex_lock(&(manager->action_locker));
 	philo->time_since_last_dinner = get_time();
@@ -38,7 +38,7 @@ static void	reset_eat_status(t_philosopher *philo)
 
 bool	is_philo_alive(t_philosopher *philo)
 {
-	t_manager *const	manager = get_manager(NULL);
+	t_manager *const	manager = get_manager();
 	bool				is_alive;
 
 	pthread_mutex_lock(&(manager->state_locker));

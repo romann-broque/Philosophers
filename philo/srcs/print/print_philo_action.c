@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:24:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/15 23:23:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/06/28 12:13:54 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_philo_action(t_philosopher *philo, const char *message)
 {
-	t_manager *const	manager = get_manager(NULL);
+	t_manager *const	manager = get_manager();
 	size_t				now;
 
 	now = delta_time(manager->start_dinner_time);
