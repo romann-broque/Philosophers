@@ -6,23 +6,22 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:16:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/28 14:35:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 21:08:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	is_dinner_finished(
-	const t_philosopher *philo,
-	t_manager *manager,
-	const t_dinner_config *config
+static bool	is_dinner_finished(
+	t_philosopher *philo,
+	t_manager *manager
 	)
 {
 	bool	is_over;
 
 	pthread_mutex_lock(&(manager->is_over_locker));
-	is_over = (philo->nb_dinner_eaten == config->nb_dinner
-			|| manager->is_a_philosopher_dead == true);
+
+	is_over = (get_philo_state(philo) == E_FINISHED || manager->is_a_philosopher_dead == true);
 	pthread_mutex_unlock(&(manager->is_over_locker));
 	return (is_over);
 }
@@ -54,16 +53,15 @@ void	*philo_routine(t_philosopher *philo)
 
 	state_index = 0;
 	wait_start(manager);
-	pthread_mutex_lock(&(manager->state_locker));
+	pthread_mutex_lock(&(manager->is_over_locker));
 	philo->time_since_last_dinner = manager->start_dinner_time;
-	pthread_mutex_unlock(&(manager->state_locker));
-	while (is_dinner_finished(philo, manager, config) == false)
+	pthread_mutex_unlock(&(manager->is_over_locker));
+	while (is_dinner_finished(philo, manager) == false && get_philo_state(philo) != E_PREPARE_TO_DIE)
 	{
-		state_fct[state_index](philo, config);
-		if (state_index + 1 < STATE_NB)
-			++state_index;
-		else
-			state_index = 0;
+		state_fct[state_index % STATE_NB](philo, config);
 	}
+	if (philo->state == E_PREPARE_TO_DIE)
+		set_philo_state(philo, E_DEAD);
+	//printf("philo %ld out %d\n", philo->id, philo->state);	
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:41:51 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/28 14:29:00 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 22:08:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ void	think_state(
 	)
 {
 	set_philo_state(philo, E_THINK);
-	print_philo_action(philo, THINK_MESSAGE);
+	if (get_philo_state(philo) != E_PREPARE_TO_DIE)
+		print_philo_action(philo, THINK_MESSAGE);
 }

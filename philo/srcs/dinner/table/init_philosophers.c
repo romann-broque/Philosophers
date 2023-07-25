@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:22:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 16:43:05 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 21:48:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ static void	set_philo(
 	)
 {
 	philo->id = id;
+	pthread_mutex_init(&(philo->state_locker), NULL);
 	philo->state = E_THINK;
 	philo->nb_dinner_eaten = 0;
 	philo->time_since_last_dinner = 0;
-	philo->left_fork = forks[0];
-	philo->right_fork = forks[1];
+	philo->forks[philo->id % 2] = forks[0];
+	philo->forks[(philo->id + 1) % 2] = forks[1];
 }
 
 static void	set_philosophers(

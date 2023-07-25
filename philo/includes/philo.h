@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/28 14:33:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 22:08:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@
 # define BEYOND_LIMIT_MASK	0x0100
 # define BEYOND_ULIMIT_MASK	0x1000
 
+# define SUCCESS 0
+# define FAILURE -1
+
 ////////////
 /// ENUM ///
 ////////////
@@ -83,7 +86,9 @@ enum e_state
 	E_SLEEP,
 	E_THINK,
 	E_EAT,
-	E_DEAD
+	E_PREPARE_TO_DIE,
+	E_DEAD,
+	E_FINISHED
 };
 
 ///////////////////
@@ -92,11 +97,11 @@ enum e_state
 
 typedef struct s_philosopher
 {
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
+	pthread_mutex_t *forks[2];
 	size_t			id;
 	size_t			nb_dinner_eaten;
 	size_t			time_since_last_dinner;
+	pthread_mutex_t	state_locker;
 	enum e_state	state;
 }				t_philosopher;
 
@@ -105,7 +110,6 @@ typedef struct s_manager
 	size_t			start_dinner_time;
 	pthread_mutex_t	speak_locker;
 	pthread_mutex_t	action_locker;
-	pthread_mutex_t	state_locker;
 	pthread_mutex_t	is_over_locker;
 	bool			is_a_philosopher_dead;
 	bool			can_dinner_start;
@@ -191,6 +195,7 @@ void			*philo_routine(t_philosopher *philo);
 //// set_philo_state.c
 
 void			set_philo_state(t_philosopher *philo, const enum e_state state);
+enum e_state get_philo_state(t_philosopher *philo);
 
 /////	states			//////
 
