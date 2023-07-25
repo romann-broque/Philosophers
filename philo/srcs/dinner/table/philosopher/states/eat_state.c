@@ -6,27 +6,29 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:40:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 14:19:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 15:16:43 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+static void grab_specific_fork(t_philosopher *philo, pthread_mutex_t *fork)
+{
+	pthread_mutex_lock(fork);
+	print_philo_action(philo, FORK_MESSAGE);
+}
+
 static void	grab_forks(t_philosopher *philo)
 {
 	if (philo->id % 2)
 	{
-		pthread_mutex_lock(philo->left_fork);
-		print_philo_action(philo, FORK_MESSAGE);
-		pthread_mutex_lock(philo->right_fork);
-		print_philo_action(philo, FORK_MESSAGE);
+		grab_specific_fork(philo, philo->left_fork);
+		grab_specific_fork(philo, philo->right_fork);
 	}
 	else
 	{
-		pthread_mutex_lock(philo->right_fork);
-		print_philo_action(philo, FORK_MESSAGE);
-		pthread_mutex_lock(philo->left_fork);
-		print_philo_action(philo, FORK_MESSAGE);
+		grab_specific_fork(philo, philo->right_fork);
+		grab_specific_fork(philo, philo->left_fork);
 	}
 }
 

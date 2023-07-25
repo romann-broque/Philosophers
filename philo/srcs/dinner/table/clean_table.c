@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:34:43 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/28 12:15:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 16:30:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,13 @@
 // 	pthread_mutex_destroy(&(manager->speak_locker));
 // }
 
-static void	kill_threads(t_dinner_config *config)
-{
-	const size_t	nb_threads = config->nb_philosopher;
-	size_t			i;
-
-	i = 0;
-	while (i < nb_threads)
-	{
-		pthread_detach(config->threads[i]);
-		++i;
-	}
-}
-
 void	clean_table(t_table *table)
 {
-	t_dinner_config *const	config = get_config(NULL);
+	// t_dinner_config *const	config = get_config(NULL);
 
-	kill_threads(config);
 	(void)table;
-}
-	// clean_forks(table->forks, config->nb_philosopher);
-	// clean_manager(&(table->manager));
+	// free(config->threads);
 	// free(table->philosophers);
+	// clean_forks(table->forks, config->nb_philosopher);
+}
+	// clean_manager(&(table->manager));

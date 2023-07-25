@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:17:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/28 12:15:42 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/25 15:50:37 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	init_threads(
 		{
 			pthread_create(config->threads + i, NULL,
 				(void *(*)(void *))philo_routine, table->philosophers + i);
+			pthread_detach(config->threads[i]);
 			++i;
 		}
 	}
