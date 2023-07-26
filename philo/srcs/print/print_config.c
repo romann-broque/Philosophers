@@ -14,6 +14,7 @@
 
 void	print_config(t_dinner_config *config)
 {
+
 	printf("%-40s: %zu\n", NB_PHILO_MESSAGE, config->nb_philosopher);
 	printf("%-40s: %zu\n", DIE_TIME_MESSAGE, config->die_time);
 	printf("%-40s: %zu\n", EAT_TIME_MESSAGE, config->eat_time);

@@ -14,7 +14,7 @@
 
 int	main(int ac, char **av)
 {
-	t_dinner_config	config;
+	t_dinner_config	 config;
 	int				ret_val;
 
 	++av;
