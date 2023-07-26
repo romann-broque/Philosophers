@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 01:47:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 22:04:21 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/26 08:34:26 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static bool	philosopher_should_die(t_philosopher *philo, const t_dinner_config *
 	size_t				time;
 	bool				should_a_philosopher_die;
 	
-
 	should_a_philosopher_die = false;
 	pthread_mutex_lock(&(manager->is_over_locker));
 	time = delta_time(philo->time_since_last_dinner);
