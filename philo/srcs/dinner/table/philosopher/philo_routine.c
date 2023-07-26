@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:16:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/26 08:31:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/26 09:26:35 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static bool	is_dinner_finished(
 	bool	is_over;
 
 	pthread_mutex_lock(&(manager->is_over_locker));
-
 	is_over = (get_philo_state(philo) == E_FINISHED || manager->is_a_philosopher_dead == true);
 	pthread_mutex_unlock(&(manager->is_over_locker));
 	return (is_over);

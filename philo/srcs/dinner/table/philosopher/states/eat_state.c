@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:40:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/25 21:59:19 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/26 09:26:40 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	reset_eat_status(t_philosopher *philo)
 	pthread_mutex_unlock(&(manager->is_over_locker));
 }
 
-static void increase_meal_count(t_philosopher *philo)
+static void	increase_meal_count(t_philosopher *philo)
 {
 	t_manager *const	manager = get_manager();
 

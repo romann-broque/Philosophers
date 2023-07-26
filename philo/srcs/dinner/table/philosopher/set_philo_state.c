@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:39:29 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/26 08:30:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/26 08:46:55 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	set_philo_state(t_philosopher *philo, const enum e_state state)
 	pthread_mutex_unlock(&(philo->state_locker));
 }
 
-enum e_state get_philo_state(t_philosopher *philo)
+enum e_state	get_philo_state(t_philosopher *philo)
 {
-	enum e_state state;
+	enum e_state	state;
 
 	pthread_mutex_lock(&(philo->state_locker));
 	state = philo->state;
 	pthread_mutex_unlock(&(philo->state_locker));
-	return state;
+	return (state);
 }
