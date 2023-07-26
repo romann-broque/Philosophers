@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:16:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/26 10:24:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/26 10:41:11 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static bool	is_dinner_finished(t_philosopher *philo)
 {
-	return (get_philo_state(philo) == E_FINISHED);
+	const enum e_state	state = get_philo_state(philo);
+
+	return (state == E_FINISHED || state == E_PREPARE_TO_DIE);
 }
 
 void	*philo_routine(t_philosopher *philo)
@@ -31,9 +33,10 @@ void	*philo_routine(t_philosopher *philo)
 
 	state_index = 0;
 	set_time_since_last_dinner(philo, get_start_dinner_time());
-	while (is_dinner_finished(philo) == false && get_philo_state(philo) != E_PREPARE_TO_DIE)
+	while (is_dinner_finished(philo) == false)
 	{
 		state_fct[state_index % STATE_NB](philo, config);
+		++state_index;
 	}
 	if (get_philo_state(philo) == E_PREPARE_TO_DIE)
 		set_philo_state(philo, E_DEAD);
