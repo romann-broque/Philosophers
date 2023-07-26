@@ -44,7 +44,8 @@ SRCS		+= start_dinner_time.c
 ### srcs/dinner/table/philosopher/
 
 SRCS		+= philo_routine.c
-SRCS		+= set_philo_state.c
+SRCS		+= philo_getter.c
+SRCS		+= philo_setter.c
 
 ### srcs/dinner/table/philosopher/states/
 
