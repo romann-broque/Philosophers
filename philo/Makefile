@@ -39,6 +39,7 @@ SRCS		+= clean_table.c
 
 SRCS		+= manager_routine.c
 SRCS		+= get_manager.c
+SRCS		+= start_dinner_time.c
 
 ### srcs/dinner/table/philosopher/
 

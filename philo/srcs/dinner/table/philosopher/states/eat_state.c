@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:40:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/26 09:57:40 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/26 10:12:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void grab_specific_fork(t_philosopher *philo, pthread_mutex_t *fork)
 
 static int	grab_forks(t_philosopher *philo)
 {
-
 	grab_specific_fork(philo, philo->forks[0]);
 	if (philo->forks[0] == philo->forks[1])
 		return FAILURE;
@@ -38,18 +37,12 @@ static void	drop_forks(t_philosopher *philo)
 
 static void	reset_eat_status(t_philosopher *philo)
 {
-	t_manager *const	manager = get_manager();
-
-	pthread_mutex_lock(&(manager->is_over_locker));
-	philo->time_since_last_dinner = get_time();
-	pthread_mutex_unlock(&(manager->is_over_locker));
+	set_time_since_last_dinner(philo, get_time());
 }
 
 static void	increase_meal_count(t_philosopher *philo)
 {
-	pthread_mutex_lock(&(philo->dinner_locker));
-	++(philo->nb_dinner_eaten);
-	pthread_mutex_unlock(&(philo->dinner_locker));
+	increase_nb_dinner_eaten(philo);
 }
 
 void	eat_state(t_philosopher *philo, t_dinner_config *config)
@@ -63,7 +56,7 @@ void	eat_state(t_philosopher *philo, t_dinner_config *config)
 		print_philo_action(philo, EAT_MESSAGE);
 		exec_action(config->eat_time);
 		increase_meal_count(philo);
-		if (philo->nb_dinner_eaten == config->nb_dinner) {
+		if (get_nb_dinner_eaten(philo) == config->nb_dinner) {
 			set_philo_state(philo, E_FINISHED);
 		}
 	}

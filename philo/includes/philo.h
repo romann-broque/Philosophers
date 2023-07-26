@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/26 09:56:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/26 10:22:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,18 @@ typedef struct s_philosopher
 	size_t			nb_dinner_eaten;
 	size_t			time_since_last_dinner;
 	pthread_mutex_t	state_locker;
-	pthread_mutex_t	dinner_locker;
+	pthread_mutex_t	nb_dinner_locker;
+	pthread_mutex_t	time_locker;
 	enum e_state	state;
 }				t_philosopher;
 
 typedef struct s_manager
 {
 	size_t			start_dinner_time;
-	pthread_mutex_t	speak_locker;
-	pthread_mutex_t	is_over_locker;
 	bool			is_a_philosopher_dead;
 	bool			can_dinner_start;
+	pthread_mutex_t	start_time_locker;
+	pthread_mutex_t	speak_locker;
 }				t_manager;
 
 typedef struct s_dinner_config
@@ -186,6 +187,11 @@ t_manager		*get_manager(void);
 
 void			manager_routine(t_table *table, const t_dinner_config *config);
 
+// start_dinner_time.c
+
+void	set_start_dinner_time(void);
+size_t	get_start_dinner_time(void);
+
 /////	philosopher		/////
 
 //// philo_routine.c
@@ -195,7 +201,11 @@ void			*philo_routine(t_philosopher *philo);
 //// set_philo_state.c
 
 void			set_philo_state(t_philosopher *philo, const enum e_state state);
+void	increase_nb_dinner_eaten(t_philosopher *philo);
+void	set_time_since_last_dinner(t_philosopher *philo, const size_t new_time);
 enum e_state get_philo_state(t_philosopher *philo);
+size_t	get_nb_dinner_eaten(t_philosopher *philo);
+size_t	get_time_since_last_dinner(t_philosopher *philo);
 
 /////	states			//////
 
