@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:34:43 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/26 09:10:35 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/26 09:56:15 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	clean_forks(pthread_mutex_t *forks, const size_t nb_forks)
 
 static void	clean_manager(t_manager *manager)
 {
-	pthread_mutex_destroy(&(manager->action_locker));
 	pthread_mutex_destroy(&(manager->speak_locker));
 	pthread_mutex_destroy(&(manager->is_over_locker));
 }

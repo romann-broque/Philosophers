@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 01:47:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/26 09:26:17 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/07/26 09:55:32 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,5 @@ static bool	is_simulation_finished(
 
 void	manager_routine(t_table *table, const t_dinner_config *config)
 {
-	//t_manager *const	manager = &(table->manager);
-
-	//pthread_mutex_lock(&(manager->action_locker));
 	while (is_simulation_finished(table->philosophers, config) == false);
-	//{
-		//pthread_mutex_unlock(&(manager->action_locker));
-		//pthread_mutex_lock(&(manager->action_locker));
-	//}
-	//pthread_mutex_unlock(&(manager->action_locker));
 }
