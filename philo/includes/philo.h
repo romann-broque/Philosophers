@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/26 12:26:28 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/03 13:14:02 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@
 # define MIN_EXPECTED_ARG	4
 # define MAX_EXPECTED_ARG	5
 # define STATE_NB			3
+
+// TIME
+
+# define EVENNESS_TIMELAG	1000
+# define START_TIMELAG_UNIT	1000
 
 // COLORS //
 
