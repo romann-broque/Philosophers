@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:03:39 by rbroque           #+#    #+#             */
-/*   Updated: 2023/07/26 10:15:11 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/03 13:15:58 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ t_manager	*get_manager(void)
 {
 	return (load_manager(NULL));
 }
-

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/03 13:14:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:07:12 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,16 @@ t_manager		*get_manager(void);
 
 void			manager_routine(t_table *table, const t_dinner_config *config);
 
+//// manager_utils.c
+
+void			kill_all_philos(
+					t_philosopher *philosophers,
+					size_t first_id_philo_dead,
+					const t_dinner_config *config);
+bool			philosopher_should_die(
+					t_philosopher *philo,
+					const t_dinner_config *config);
+
 // start_dinner_time.c
 
 void			set_start_dinner_time(void);
@@ -207,7 +217,8 @@ void			*philo_routine(t_philosopher *philo);
 
 void			set_philo_state(t_philosopher *philo, const enum e_state state);
 void			increase_nb_dinner_eaten(t_philosopher *philo);
-void			set_time_since_last_dinner(t_philosopher *philo, const size_t new_time);
+void			set_time_since_last_dinner(t_philosopher *philo,
+					const size_t new_time);
 
 //// philo_getter.c
 

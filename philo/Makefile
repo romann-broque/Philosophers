@@ -38,6 +38,7 @@ SRCS		+= clean_table.c
 ### srcs/dinner/table/manager/
 
 SRCS		+= manager_routine.c
+SRCS		+= manager_utils.c
 SRCS		+= get_manager.c
 SRCS		+= start_dinner_time.c
 
