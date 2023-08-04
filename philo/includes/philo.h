@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/03 14:07:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/04 12:25:08 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,10 +246,14 @@ void			think_state(t_philosopher *philo, t_dinner_config *config);
 
 int				ft_atolu_check(unsigned long *ret_value, const char *str);
 
+// setup_config.c
+
+int				setup_config(t_dinner_config *config, const int ac, char **av);
+
 // init_config.c
 
-int				init_config(t_dinner_config *config, const int ac, char **av);
-t_dinner_config	*get_config(t_dinner_config *config_ref);
+void			init_config(t_dinner_config *config_ref);
+t_dinner_config	*get_config(void);
 
 ///		PRINT		///
 

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:17:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/03 13:14:12 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/04 12:26:10 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	lock_start(void)
 static void	unlock_start(void)
 {
 	t_manager *const		manager = get_manager();
-	t_dinner_config *const	config = get_config(NULL);
+	t_dinner_config *const	config = get_config();
 
 	usleep(START_TIMELAG_UNIT * config->nb_philosopher);
 	set_start_dinner_time();
@@ -57,7 +57,7 @@ static void	unlock_start(void)
 
 void	start_dinner(t_table *table, t_dinner_config *config)
 {
-	get_config(config);
+	init_config(config);
 	init_manager(&(table->manager));
 	lock_start();
 	summon_philosophers(table, config);

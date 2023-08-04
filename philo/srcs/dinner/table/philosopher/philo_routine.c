@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:16:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/03 13:13:47 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/08/04 12:26:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	*philo_routine(t_philosopher *philo)
 		sleep_state,
 		think_state
 	};
-	t_dinner_config *const	config = get_config(NULL);
+	t_dinner_config *const	config = get_config();
 	size_t					state_index;
 
 	state_index = 0;

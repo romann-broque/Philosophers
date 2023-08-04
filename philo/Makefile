@@ -58,6 +58,7 @@ SRCS		+= think_state.c
 
 SRCS		+= ft_atolu_check.c
 SRCS		+= init_config.c
+SRCS		+= setup_config.c
 
 ### srcs/print/
 
