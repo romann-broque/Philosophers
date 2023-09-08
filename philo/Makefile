@@ -124,6 +124,10 @@ ifeq ($(debug), true)
 	CFLAGS	+= -fsanitize=undefined,thread
 endif
 
+ifeq ($(print_debug), true)
+	CFLAGS	+= -D PRINT_DEBUG=true
+endif
+
 ##############
 #### NAME ####
 ##############
