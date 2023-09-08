@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/08 07:56:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/08 09:35:13 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@
 # define FAILURE -1
 
 # ifndef PRINT_DEBUG
-#  define PRINT_DEBUG false
+#  define PRINT_DEBUG 0
 # endif
 
 ////////////
