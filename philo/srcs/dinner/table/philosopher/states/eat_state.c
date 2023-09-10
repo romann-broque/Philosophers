@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:40:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/04 12:14:05 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/10 07:18:05 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ static void	grab_specific_fork(t_philosopher *philo, pthread_mutex_t *fork)
 
 static int	grab_forks(t_philosopher *philo)
 {
-	grab_specific_fork(philo, philo->forks[0]);
-	if (philo->forks[0] == philo->forks[1])
+	const size_t	first_fork_index = philo->id % 2;
+	const size_t	second_fork_index = !first_fork_index;
+
+	grab_specific_fork(philo, philo->forks[first_fork_index]);
+	if (philo->forks[first_fork_index] == philo->forks[second_fork_index])
 		return (FAILURE);
-	grab_specific_fork(philo, philo->forks[1]);
+	grab_specific_fork(philo, philo->forks[second_fork_index]);
 	return (SUCCESS);
 }
 

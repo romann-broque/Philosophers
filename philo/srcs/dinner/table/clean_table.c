@@ -6,13 +6,13 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:34:43 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/04 12:26:57 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/10 07:37:53 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	clean_forks(pthread_mutex_t *forks, const size_t nb_forks)
+void	clean_forks(pthread_mutex_t *forks, const size_t nb_forks)
 {
 	size_t	i;
 

@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:17:19 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/15 22:27:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/10 07:38:33 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ pthread_mutex_t	*init_forks(const size_t nb_forks)
 	i = 0;
 	while (i < nb_forks)
 	{
-		pthread_mutex_init(forks + i, NULL);
+		if (pthread_mutex_init(forks + i, NULL))
+		{
+			clean_forks(forks, i);
+			return (NULL);
+		}
 		++i;
 	}
 	return (forks);

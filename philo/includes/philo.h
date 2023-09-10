@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/08 09:35:13 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/10 07:37:39 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,7 @@ t_table			*init_table(t_dinner_config *config);
 
 /// clean_table.c
 
+void			clean_forks(pthread_mutex_t *forks, const size_t nb_fork);
 void			clean_table(t_table *table);
 
 /////	manager		/////
