@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/10 07:37:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/11 18:09:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ typedef struct s_table
 	t_philosopher		*philosophers;
 }				t_table;
 
+typedef int	t_retval;
+
 //////////////////
 /// FUNCTIONS ///
 /////////////////
@@ -151,11 +153,11 @@ typedef struct s_table
 
 // start_dinner.c
 
-void			start_dinner(t_table *table, t_dinner_config *config);
+t_retval		start_dinner(t_table *table, t_dinner_config *config);
 
 // start_simulation.c
 
-void			start_simulation(t_dinner_config *const config);
+t_retval		start_simulation(t_dinner_config *const config);
 
 // philo_routine.c
 

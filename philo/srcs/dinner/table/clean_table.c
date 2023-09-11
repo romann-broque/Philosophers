@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:34:43 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/10 07:37:53 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/11 18:06:07 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,17 @@ void	clean_table(t_table *table)
 {
 	t_dinner_config *const	config = get_config();
 
-	wait_for_philosophers(config);
-	clean_forks(table->forks, config->nb_philosopher);
-	free(config->threads);
-	free(table->philosophers);
-	clean_manager(&(table->manager));
-	free(table);
+	if (config != NULL)
+	{
+		wait_for_philosophers(config);
+		free(config->threads);
+	}
+	if (table != NULL)
+	{
+		if (config != NULL)
+			clean_forks(table->forks, config->nb_philosopher);
+		free(table->philosophers);
+		clean_manager(&(table->manager));
+		free(table);
+	}
 }

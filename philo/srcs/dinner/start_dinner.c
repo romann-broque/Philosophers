@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:17:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/08/04 12:26:10 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/11 18:11:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static void	init_threads(
 			++i;
 		}
 	}
+	else
+		config->nb_philosopher = 0;
 }
 
 static void	summon_philosophers(t_table *table, t_dinner_config *config)
@@ -55,12 +57,14 @@ static void	unlock_start(void)
 	pthread_mutex_unlock(&(manager->can_start_locker));
 }
 
-void	start_dinner(t_table *table, t_dinner_config *config)
+t_retval	start_dinner(t_table *table, t_dinner_config *config)
 {
 	init_config(config);
 	init_manager(&(table->manager));
 	lock_start();
 	summon_philosophers(table, config);
 	unlock_start();
-	manager_routine(table, config);
+	if (config->threads != NULL)
+		manager_routine(table, config);
+	return (EXIT_SUCCESS);
 }
