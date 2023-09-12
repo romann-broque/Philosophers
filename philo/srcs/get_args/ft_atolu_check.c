@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:14:02 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 11:15:52 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:02:08 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static bool	is_inbounds(
 	const unsigned long added_nb
 	)
 {
-	const unsigned long	bound = (LONG_MAX - added_nb) / 10;
+	const unsigned long	bound = (INT_MAX - added_nb) / 10;
 
 	return (nb <= bound);
 }

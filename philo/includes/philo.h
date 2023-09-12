@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/11 18:09:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:12:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,14 @@
 
 # define NOT_ENOUGH_ARG				"not enough arguments"
 # define TOO_MANY_ARG				"too many arguments"
-# define SIGN_ERROR_MESSAGE			"numbers must be positive"
-# define NON_DIGIT_ERROR_MESSAGE	"parameters must be numbers"
-# define BEYOND_LIMIT_ERROR_MESSAGE	"parameters must be numbers under LONG_MAX"
+# define SIGN_EMESSAGE				"numbers must be positive"
+# define NON_DIGIT_EMESSAGE			"parameters must be numbers"
+# define BEYOND_LIMIT_EMESSAGE		"parameters must be numbers under LONG_MAX"
+# define TOO_MANY_PHILO_EMESSAGE	"philos can be at most 200"
 
 // COUNT //
 
+# define PHILO_COUNT_MAX	200
 # define MIN_EXPECTED_ARG	4
 # define MAX_EXPECTED_ARG	5
 # define STATE_NB			3
@@ -73,11 +75,12 @@
 
 // MASK //
 
-# define NO_ERROR			0x0000
-# define NEGATIVE_MASK		0x0001
-# define NON_DIGIT_MASK		0x0010
-# define BEYOND_LIMIT_MASK	0x0100
-# define BEYOND_ULIMIT_MASK	0x1000
+# define NO_ERROR				0x0000
+# define NEGATIVE_MASK			0x0001
+# define NON_DIGIT_MASK			0x0010
+# define BEYOND_LIMIT_MASK		0x0100
+# define BEYOND_ULIMIT_MASK		0x1000
+# define TOO_MANY_PHILO_MASK	0x1000
 
 # define SUCCESS 0
 # define FAILURE -1
