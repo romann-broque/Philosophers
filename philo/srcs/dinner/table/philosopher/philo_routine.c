@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 23:16:46 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 14:24:51 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 15:17:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void	*philo_routine(t_philosopher *philo)
 		state_fct[state_index % STATE_NB](philo, config);
 		++state_index;
 	}
+	// printf("Philo %zu is almost done\n", philo->id);
 	if (get_philo_state(philo) == E_PREPARE_TO_DIE)
 		set_philo_state(philo, E_DEAD);
+	// printf("Philo %zu is done\n", philo->id);
 	return (NULL);
 }
