@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 23:40:48 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 06:10:26 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 06:59:56 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,23 @@
 
 static void	grab_specific_fork(t_philosopher *philo, pthread_mutex_t *fork)
 {
+	// char fork_address[1000];
+	
 	pthread_mutex_lock(fork);
 	if (get_philo_state(philo) != E_PREPARE_TO_DIE)
+	{
+		// sprintf(fork_address, "%s -> %p\n", FORK_MESSAGE, (void *)fork);
+		// print_philo_action(philo, fork_address);
 		print_philo_action(philo, FORK_MESSAGE);
+	}
 }
 
 static int	grab_forks(t_philosopher *philo)
 {
-	const size_t	first_fork_index = philo->id % 2;
-	const size_t	second_fork_index = !first_fork_index;
-
-	grab_specific_fork(philo, philo->forks[first_fork_index]);
-	if (philo->forks[first_fork_index] == philo->forks[second_fork_index])
+	grab_specific_fork(philo, philo->forks[0]);
+	if (philo->forks[0] == philo->forks[1])
 		return (FAILURE);
-	grab_specific_fork(philo, philo->forks[second_fork_index]);
+	grab_specific_fork(philo, philo->forks[1]);
 	return (SUCCESS);
 }
 
