@@ -128,6 +128,10 @@ ifeq ($(print_debug), true)
 	CFLAGS	+= -D PRINT_DEBUG=true
 endif
 
+ifeq ($(dont_wait), true)
+	CFLAGS	+= -D DONT_WAIT=true
+endif
+
 ##############
 #### NAME ####
 ##############

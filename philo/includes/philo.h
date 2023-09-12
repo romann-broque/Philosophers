@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 16:06:38 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 16:20:09 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,10 @@
 
 # ifndef PRINT_DEBUG
 #  define PRINT_DEBUG 0
+# endif
+
+# ifndef DONT_WAIT
+#  define DONT_WAIT 0
 # endif
 
 ////////////
