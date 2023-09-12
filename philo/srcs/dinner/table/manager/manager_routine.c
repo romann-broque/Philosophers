@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 01:47:30 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 14:29:16 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:39:01 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,5 @@ static bool	is_simulation_finished(
 void	manager_routine(t_table *table, const t_dinner_config *config)
 {
 	while (is_simulation_finished(table->philosophers, config) == false)
-		;
+		usleep(TEMPO_TIME);
 }

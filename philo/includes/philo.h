@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 14:12:41 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:38:49 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@
 
 # define EVENNESS_TIMELAG	1000
 # define START_TIMELAG_UNIT	1000
+# define TEMPO_TIME			125
 
 // COLORS //
 

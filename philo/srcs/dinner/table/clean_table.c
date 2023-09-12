@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 21:34:43 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/11 18:06:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 14:40:41 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	clean_manager(t_manager *manager)
 {
 	pthread_mutex_destroy(&(manager->speak_locker));
 	pthread_mutex_destroy(&(manager->start_time_locker));
+	pthread_mutex_destroy(&(manager->can_start_locker));
 }
 
 static void	wait_for_philosophers(const t_dinner_config *const config)
