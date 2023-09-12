@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 16:20:09 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 19:23:27 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 # define MIN_EXPECTED_ARG	4
 # define MAX_EXPECTED_ARG	5
 # define STATE_NB			3
+# define ALLOC_SUCCESS		0
 
 // TIME
 

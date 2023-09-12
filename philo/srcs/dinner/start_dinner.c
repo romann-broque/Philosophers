@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:17:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 17:51:46 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 19:23:18 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ static void	init_threads(
 		i = 0;
 		while (i < config->nb_philosopher)
 		{
-			pthread_create(config->threads + i, NULL,
-				(void *(*)(void *))philo_routine, table->philosophers + i);
+			if (pthread_create(config->threads + i, NULL,
+					(void *(*)(void *))philo_routine,
+				table->philosophers + i) != ALLOC_SUCCESS)
+				config->nb_philosopher = i;
 			++i;
 		}
 	}
