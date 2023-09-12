@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 15:57:39 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 16:06:38 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,6 +288,6 @@ void			print_philo_action_by_manager(
 
 size_t			get_time(void);
 size_t			delta_time(long long time);
-void			exec_action(const size_t micro_seconds);
+void			exec_action(t_philosopher *philo, const size_t micro_seconds);
 
 #endif

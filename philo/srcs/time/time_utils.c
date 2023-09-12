@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:16:18 by rbroque           #+#    #+#             */
-/*   Updated: 2023/06/14 11:20:55 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 16:08:03 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,14 @@ size_t	delta_time(long long time)
 	return (0);
 }
 
-void	exec_action(const size_t micro_seconds)
+void	exec_action(t_philosopher *philo, const size_t micro_seconds)
 {
-	usleep(1000 * micro_seconds);
+	size_t	left_time;
+
+	left_time = micro_seconds;
+	while (left_time > 0 && get_philo_state(philo) != E_PREPARE_TO_DIE)
+	{
+		usleep(1000);
+		--left_time;
+	}
 }
