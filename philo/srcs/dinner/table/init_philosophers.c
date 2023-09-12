@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 19:22:41 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 19:19:02 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 19:33:48 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ t_philosopher	*init_philosophers(
 	philosophers = (t_philosopher *)malloc(
 			nb_philosophers * sizeof(t_philosopher));
 	if (philosophers != NULL
-		&& set_philosophers(philosophers, forks, nb_philosophers) == EXIT_FAILURE)
+		&& set_philosophers(philosophers, forks, nb_philosophers)
+		== EXIT_FAILURE)
 		free(philosophers);
 	return (philosophers);
 }
