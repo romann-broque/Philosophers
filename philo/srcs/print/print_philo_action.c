@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:24:22 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 14:58:59 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 15:39:47 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static bool	is_able_to_print(t_philosopher *philosopher)
 {
-	return (get_philo_state(philosopher) != E_PREPARE_TO_DIE);
+	const enum e_state	philo_state = get_philo_state(philosopher);
+
+	return (philo_state != E_PREPARE_TO_DIE || philo_state == E_DEAD);
 }
 
 void	print_philo_action(

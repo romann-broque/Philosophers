@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:52:52 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 14:33:07 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 15:40:31 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	wait_for_philosophers_deaths(
 	while (i < config->nb_philosopher)
 	{
 		while (get_philo_state(philosophers + i) != E_DEAD
-			&& get_philo_state(philosophers + i) != E_FINISHED);
+			&& get_philo_state(philosophers + i) != E_FINISHED)
+			usleep(TEMPO_TIME);
 		++i;
 	}
 }
