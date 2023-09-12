@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 22:17:31 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/11 18:11:25 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 17:51:46 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ static void	unlock_start(void)
 
 t_retval	start_dinner(t_table *table, t_dinner_config *config)
 {
+	t_retval	retval;
+
+	retval = EXIT_SUCCESS;
 	init_config(config);
 	init_manager(&(table->manager));
 	lock_start();
@@ -66,5 +69,7 @@ t_retval	start_dinner(t_table *table, t_dinner_config *config)
 	unlock_start();
 	if (config->threads != NULL)
 		manager_routine(table, config);
-	return (EXIT_SUCCESS);
+	else
+		retval = EXIT_FAILURE;
+	return (retval);
 }
