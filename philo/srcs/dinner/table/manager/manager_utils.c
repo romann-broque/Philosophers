@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 13:52:52 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 15:40:31 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 15:58:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	kill_all_philos(
 	{
 		set_philo_state(philosophers + i, E_PREPARE_TO_DIE);
 		if (i == first_id_philo_dead)
-			print_philo_action(philosophers + i, DEAD_MESSAGE);
+			print_philo_action_by_manager(philosophers + i, DEAD_MESSAGE);
 		++i;
 	}
 	wait_for_philosophers_deaths(philosophers, config);

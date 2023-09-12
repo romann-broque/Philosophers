@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:33:34 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 14:38:49 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 15:57:39 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define TOO_MANY_ARG				"too many arguments"
 # define SIGN_EMESSAGE				"numbers must be positive"
 # define NON_DIGIT_EMESSAGE			"parameters must be numbers"
-# define BEYOND_LIMIT_EMESSAGE		"parameters must be numbers under LONG_MAX"
+# define BEYOND_LIMIT_EMESSAGE		"parameters must be numbers under INT_MAX"
 # define TOO_MANY_PHILO_EMESSAGE	"philos can be at most 200"
 
 // COUNT //
@@ -80,7 +80,6 @@
 # define NEGATIVE_MASK			0x0001
 # define NON_DIGIT_MASK			0x0010
 # define BEYOND_LIMIT_MASK		0x0100
-# define BEYOND_ULIMIT_MASK		0x1000
 # define TOO_MANY_PHILO_MASK	0x1000
 
 # define SUCCESS 0
@@ -278,7 +277,10 @@ void			print_config(t_dinner_config *config);
 
 // print_philo_action.c
 
-void			print_philo_action(t_philosopher *philo, const char *message);
+void			print_philo_action_by_philo(
+					t_philosopher *philo, const char *message);
+void			print_philo_action_by_manager(
+					t_philosopher *philo, const char *message);
 
 ///		TIME		///
 

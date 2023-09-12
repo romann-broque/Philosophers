@@ -6,7 +6,7 @@
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 11:14:02 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/12 14:02:08 by rbroque          ###   ########.fr       */
+/*   Updated: 2023/09/12 15:47:25 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_atolu_check(unsigned long *nb_dest, const char *str)
 		if (is_inbounds(nb, *str - '0') == false)
 		{
 			if (!(ret_val & NEGATIVE_MASK))
-				ret_val = BEYOND_ULIMIT_MASK;
+				ret_val = BEYOND_LIMIT_MASK;
 			break ;
 		}
 		nb = nb * 10 + (*str - '0');
