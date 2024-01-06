@@ -9,37 +9,66 @@ SHELL		= /usr/bin/bash
 ##############
 
 PATH_SRCS	+= srcs/
-PATH_SRCS	+= srcs/diner/
-PATH_SRCS	+= srcs/diner/philo_action/
+PATH_SRCS	+= srcs/dinner/
+PATH_SRCS	+= srcs/dinner/table/
+PATH_SRCS	+= srcs/dinner/table/manager/
+PATH_SRCS	+= srcs/dinner/table/philosopher/
+PATH_SRCS	+= srcs/dinner/table/philosopher/states/
 PATH_SRCS	+= srcs/get_args/
 PATH_SRCS	+= srcs/print/
+PATH_SRCS	+= srcs/time/
 
 ### srcs/
 
 SRCS		+= philo.c
 
-### srcs/diner/
+### srcs/dinner/
 
-SRCS		+= clean_table.c
+SRCS		+= start_dinner.c
+SRCS		+= start_simulation.c
+
+### srcs/dinner/table/
+
+SRCS		+= init_forks.c
+SRCS		+= init_philosophers.c
 SRCS		+= init_table.c
-SRCS		+= start_diner.c
-SRCS		+= init_philo_array.c
+SRCS		+= set_manager.c
+SRCS		+= clean_table.c
 
-### srcs/diner/philo_action/
+### srcs/dinner/table/manager/
+
+SRCS		+= manager_routine.c
+SRCS		+= manager_utils.c
+SRCS		+= get_manager.c
+SRCS		+= start_dinner_time.c
+
+### srcs/dinner/table/philosopher/
 
 SRCS		+= philo_routine.c
-SRCS		+= philo_states.c
+SRCS		+= philo_getter.c
+SRCS		+= philo_setter.c
+
+### srcs/dinner/table/philosopher/states/
+
+SRCS		+= eat_state.c
+SRCS		+= sleep_state.c
+SRCS		+= think_state.c
 
 ### srcs/get_args/
 
 SRCS		+= ft_atolu_check.c
-SRCS		+= get_stat.c
+SRCS		+= init_config.c
+SRCS		+= setup_config.c
 
 ### srcs/print/
 
-SRCS		+= print_philo_act.c
 SRCS		+= print_error.c
-SRCS		+= print_stat.c
+SRCS		+= print_config.c
+SRCS		+= print_philo_action.c
+
+### srcs/time/
+
+SRCS		+= time_utils.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -93,6 +122,14 @@ endif
 
 ifeq ($(debug), true)
 	CFLAGS	+= -fsanitize=undefined,thread
+endif
+
+ifeq ($(print_debug), true)
+	CFLAGS	+= -D PRINT_DEBUG=true
+endif
+
+ifeq ($(dont_wait), true)
+	CFLAGS	+= -D DONT_WAIT=true
 endif
 
 ##############

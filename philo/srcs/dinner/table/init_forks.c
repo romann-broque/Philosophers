@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   init_forks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 11:34:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/11 18:10:11 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/13 19:17:19 by rbroque           #+#    #+#             */
+/*   Updated: 2023/09/12 17:52:23 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+pthread_mutex_t	*init_forks(const size_t nb_forks)
 {
-	t_dinner_config	config;
-	int				ret_val;
+	pthread_mutex_t *const	forks
+		= (pthread_mutex_t *)malloc(nb_forks * sizeof(pthread_mutex_t));
+	size_t					i;
 
-	++av;
-	--ac;
-	ret_val = setup_config(&config, ac, av);
-	if (ret_val == EXIT_SUCCESS)
-		ret_val = start_simulation(&config);
-	return (ret_val);
+	if (forks == NULL)
+		return (NULL);
+	i = 0;
+	while (i < nb_forks)
+	{
+		if (pthread_mutex_init(forks + i, NULL))
+		{
+			clean_forks(forks, i);
+			return (NULL);
+		}
+		++i;
+	}
+	return (forks);
 }

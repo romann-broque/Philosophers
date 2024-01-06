@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   sleep_state.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 11:34:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/11 18:10:11 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/15 23:41:09 by rbroque           #+#    #+#             */
+/*   Updated: 2023/09/12 16:06:52 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+void	sleep_state(t_philosopher *philo, t_dinner_config *config)
 {
-	t_dinner_config	config;
-	int				ret_val;
-
-	++av;
-	--ac;
-	ret_val = setup_config(&config, ac, av);
-	if (ret_val == EXIT_SUCCESS)
-		ret_val = start_simulation(&config);
-	return (ret_val);
+	set_philo_state(philo, E_SLEEP);
+	if (get_philo_state(philo) != E_PREPARE_TO_DIE)
+		print_philo_action_by_philo(philo, SLEEP_MESSAGE);
+	exec_action(philo, config->sleep_time);
 }

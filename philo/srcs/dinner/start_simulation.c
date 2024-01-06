@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   start_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 11:34:24 by rbroque           #+#    #+#             */
-/*   Updated: 2023/09/11 18:10:11 by rbroque          ###   ########.fr       */
+/*   Created: 2023/06/09 14:41:41 by rbroque           #+#    #+#             */
+/*   Updated: 2023/09/11 18:08:21 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+t_retval	start_simulation(t_dinner_config *const config)
 {
-	t_dinner_config	config;
-	int				ret_val;
+	t_retval	retval;
+	t_table		*table;
 
-	++av;
-	--ac;
-	ret_val = setup_config(&config, ac, av);
-	if (ret_val == EXIT_SUCCESS)
-		ret_val = start_simulation(&config);
-	return (ret_val);
+	retval = EXIT_FAILURE;
+	if (PRINT_DEBUG == true)
+		print_config(config);
+	if (config->nb_dinner > 0)
+	{
+		table = init_table(config);
+		if (table != NULL)
+			retval = start_dinner(table, config);
+		clean_table(table);
+	}
+	return (retval);
 }
